@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     printf("Introduza um valor: ");
     scanf("%d", &valor);
     
-    
+    //
 
     return (EXIT_SUCCESS);
 }
