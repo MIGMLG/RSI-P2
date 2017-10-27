@@ -23,14 +23,13 @@ void limparBufferEntrada(){
 }
 
 int main(int argc, char** argv) {
-    char sexo[4];
+    char sexo[3];
     char sex;
     int i;
     
     for (i=1; i<=3; ++i){
         printf("Questionario nº: %d\n",i);
   
-        //Loop para o sexo
         while(1){
             printf("Introduza o seu sexo: ");
             scanf("%c", &sex);
@@ -38,23 +37,12 @@ int main(int argc, char** argv) {
             //sexo[i]= getchar();
             limparBufferEntrada();
             printf("Sexo: %c\n", sex);
-            printf("\n");
-            sexo[i]=sex;
-            
-            //sexo[i]=sexo[1];
+            //sexo[i]=sex;
+
             break;
-            //sex = getchar();
-            //limparBufferEntrada();
-            //if (sex=='M' || sex=='m' || sex=='F' || sex=='f'){
-                //sexo[i]=sex;
-                //break;
-            //}
-            //else {
-               // printf("Valor Invalido.");
-            //}
         }
     }
-    
+    printf("\n");
     for (i=1; i<=3; ++i){
         printf("Sexo: %c\n", sexo[i]);
     }
