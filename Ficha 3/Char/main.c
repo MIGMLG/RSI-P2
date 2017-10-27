@@ -32,9 +32,9 @@ int main(int argc, char** argv) {
   
         while(1){
             printf("Introduza o seu sexo: ");
-            scanf("%c", &sex);
+            //scanf("%c", &sex);
             //limparBufferEntrada();
-            //sexo[i]= getchar();
+            sexo[i]= getchar();
             limparBufferEntrada();
             printf("Sexo: %c\n", sex);
             //sexo[i]=sex;
