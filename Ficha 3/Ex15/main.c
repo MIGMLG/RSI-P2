@@ -8,7 +8,7 @@
  * File:   main.c
  * Author: Miguel Costa
  *
- * Created on 27 de Outubro de 2017, 15:27
+ * Created on 27 de Outubro de 2017, 19:19
  */
 
 #include <stdio.h>
@@ -18,21 +18,19 @@
 /*
  * 
  */
-void limparBufferEntrada(){
-    char ch;
-    while((ch = getchar()) != '\n' && ch !=EOF);
-}
 
 int main(int argc, char** argv) {
     int idade[estudos];
-    char sexo[estudos];
+    int sexo[estudos];
     int estadocivil[estudos];
     double salario[estudos];
-    char sex;
     int i;
     int questao1= 151;
     int questao2= 15;
-    int soma=0;
+    double soma= 0;
+    int questao4= 0;
+    int questao5= 0;
+    int questaorandom= 0;
     
     for (i=1; i<=estudos; ++i){
         printf("Questionario nº: %d\n",i);
@@ -44,21 +42,18 @@ int main(int argc, char** argv) {
                 break;
             }
             else {
-                printf("Valor Invalido.");
+                printf("Valor Invalido. ");
             }
         }
         //Loop para o sexo
         while(1){
-            printf("Introduza o seu sexo: ");
-            limparBufferEntrada();
-            scanf("%c", &sex);
-            
-            if (sex=='M' || sex=='m' || sex=='F' || sex=='f'){
-                printf("%c", sexo[1]);
+            printf("Introduza o seu sexo ( 1-M, 2-F ): ");
+            scanf("%d", &sexo[i]);
+            if (sexo[i]== 1 || sexo[i]==2){
                 break;
             }
             else {
-                printf("Valor Invalido.");
+                printf("Valor Invalido. ");
             }
         }
         // Loop para o estado civil
@@ -69,7 +64,7 @@ int main(int argc, char** argv) {
                 break;
             }
             else {
-                printf("Valor Invalido.");
+                printf("Valor Invalido. ");
             }
         }
         //Loop para o salario
@@ -80,17 +75,12 @@ int main(int argc, char** argv) {
                 break;
             }
             else {
-                printf("Valor Invalido.");
+                printf("Valor Invalido. ");
             }
         }        
     }
     
-    for (i=1; i<=estudos; ++i){
-        printf("%d", idade[i]);
-    }
-    printf("\n");
-    
-    //loop para descobrir a menor idade
+    //loop para descobrir a menor e maior idade
     for (i=1; i<=estudos; ++i){
         if(questao1>idade[i]){
             questao1= idade[i];
@@ -103,11 +93,28 @@ int main(int argc, char** argv) {
     printf("A menor idade foi: %d anos\n", questao1);
     printf("A maior idade foi: %d anos\n", questao2);
     
+    //media salarios
     for (i=1; i<=estudos; ++i){
-        printf("%d", idade[i]);
+        soma += salario[i];
     }
+    printf("Media dos salarios: %.2lf euros\n", soma/estudos);
     
-
+    // quantidade do sexo feminino com saldo ate 1500
+    for (i=1; i<=estudos; ++i){
+        if (sexo[i]==2 && salario[i]<=1500 ){
+            questao4 = questao4 + 1;
+        }
+    }
+    printf("Existem %d pessoa(s) do sexo feminino com ordenados até 1500 euros.\n", questao4);
+    
+    //ultima questao
+    for (i=1; i<=estudos; ++i){
+        if (sexo[i]==1 && idade[i]<=35 && idade[i]>18 && estadocivil[i] == 2){
+            questao5 = questao5 + 1;
+        }
+    }
+    printf("Existem %d pessoa(s) do sexo masculino entre os 18 e 35 anos inclusive que sejam casados", questao5); 
+    
     return (EXIT_SUCCESS);
 }
 
