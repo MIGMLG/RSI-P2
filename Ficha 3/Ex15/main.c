@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define estudos 4
+#define estudos 3
 
 /*
  * 
@@ -29,10 +29,11 @@ int main(int argc, char** argv) {
     int estadocivil[estudos];
     double salario[estudos];
     char sex;
-    int i;
+    int i, idades;
     
-    for (i=1; i<=4; ++i){
-        
+    for (i=1; i<=estudos; ++i){
+        printf("Questionario nº: %d\n",i);
+       // Loop para a idade 
         while(1){
             printf("Introduza a sua idade: ");
             scanf("%d", &idade[i]);
@@ -43,7 +44,7 @@ int main(int argc, char** argv) {
                 printf("Valor Invalido.");
             }
         }
-        
+        //Loop para o sexo
         while(1){
             printf("Introduza o seu sexo: ");
             limparBufferEntrada();
@@ -57,7 +58,7 @@ int main(int argc, char** argv) {
                 printf("Valor Invalido.");
             }
         }
-        
+        // Loop para o estado civil
         while(1){
             printf("Introduza o seu estado civil: ");
             scanf("%d", &estadocivil[i]);
@@ -68,7 +69,7 @@ int main(int argc, char** argv) {
                 printf("Valor Invalido.");
             }
         }
-        
+        //Loop para o salario
         while(1){
             printf("Introduza o seu salario: ");
             scanf("%lf", &salario[i]);
@@ -78,15 +79,19 @@ int main(int argc, char** argv) {
             else {
                 printf("Valor Invalido.");
             }
-        }
-        
-        
-        
+        }        
     }
     
-    printf("%c", sexo[1]);
+    //loop para descobrir a menor idade
+    idades= idade[1];
+    for (i=2; i<=estudos; ++i){
+        if(idades>idade[i]){
+            idades= idade[i];
+        }
+    }
+    printf("A menor idade foi: %d anos\n", idades);
     
-
+    
     return (EXIT_SUCCESS);
 }
 
