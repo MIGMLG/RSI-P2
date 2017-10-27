@@ -29,7 +29,10 @@ int main(int argc, char** argv) {
     int estadocivil[estudos];
     double salario[estudos];
     char sex;
-    int i, idades;
+    int i;
+    int questao1= 151;
+    int questao2= 15;
+    int soma=0;
     
     for (i=1; i<=estudos; ++i){
         printf("Questionario nº: %d\n",i);
@@ -82,16 +85,29 @@ int main(int argc, char** argv) {
         }        
     }
     
+    for (i=1; i<=estudos; ++i){
+        printf("%d", idade[i]);
+    }
+    printf("\n");
+    
     //loop para descobrir a menor idade
-    idades= idade[1];
-    for (i=2; i<=estudos; ++i){
-        if(idades>idade[i]){
-            idades= idade[i];
+    for (i=1; i<=estudos; ++i){
+        if(questao1>idade[i]){
+            questao1= idade[i];
+        }
+        if(questao2<idade[i]){
+            questao2= idade[i];
         }
     }
-    printf("A menor idade foi: %d anos\n", idades);
     
+    printf("A menor idade foi: %d anos\n", questao1);
+    printf("A maior idade foi: %d anos\n", questao2);
     
+    for (i=1; i<=estudos; ++i){
+        printf("%d", idade[i]);
+    }
+    
+
     return (EXIT_SUCCESS);
 }
 
