@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define estudos 3
+#define estudos 100
 
 /*
  * 
@@ -30,9 +30,9 @@ int main(int argc, char** argv) {
     double soma= 0;
     int questao4= 0;
     int questao5= 0;
-    int questaorandom= 0;
+    int contador=1;
     
-    for (i=1; i<=estudos; ++i){
+    for (i=1; i<=contador; ++i){
         printf("Questionario nº: %d\n",i);
        // Loop para a idade 
         while(1){
@@ -77,7 +77,8 @@ int main(int argc, char** argv) {
             else {
                 printf("Valor Invalido. ");
             }
-        }        
+        }
+        contador++;
     }
     
     //loop para descobrir a menor e maior idade
