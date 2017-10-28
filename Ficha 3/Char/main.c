@@ -21,7 +21,7 @@ void limparBufferEntrada(){
     char ch;
     while((ch = getchar()) != '\n' && ch !=EOF);
 }
-
+//
 int main(int argc, char** argv) {
     char sexo[3];
     char sex;
