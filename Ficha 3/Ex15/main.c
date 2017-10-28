@@ -20,30 +20,34 @@
  */
 //
 int main(int argc, char** argv) {
+    int i;
     int idade[estudos];
     int sexo[estudos];
     int estadocivil[estudos];
     double salario[estudos];
-    int i;
+    int idades;
     int questao1= 151;
     int questao2= 15;
-    double soma= 0;
+    double questao3= 0;
     int questao4= 0;
     int questao5= 0;
     int contador=1;
     
+    
     for (i=1; i<=contador; ++i){
         printf("Questionario nº: %d\n",i);
-       // Loop para a idade 
-        while(1){
-            printf("Introduza a sua idade: ");
-            scanf("%d", &idade[i]);
-            if (idade[i]>= 16 && idade[i]<=150){
-                break;
-            }
-            else {
-                printf("Valor Invalido. ");
-            }
+        printf("Introduza a sua idade: ");
+        scanf("%d", &idades);
+        if (idades<0) {
+            contador=contador - 1;
+            continue;
+        }
+        else if (idades< 16 && idades>150){
+            printf("Valor Invalido. ");
+            continue;
+        }
+        else {
+            idade[i]= idades;
         }
         //Loop para o sexo
         while(1){
@@ -82,7 +86,7 @@ int main(int argc, char** argv) {
     }
     
     //loop para descobrir a menor e maior idade
-    for (i=1; i<=estudos; ++i){
+    for (i=1; i<=contador; ++i){
         if(questao1>idade[i]){
             questao1= idade[i];
         }
@@ -95,13 +99,13 @@ int main(int argc, char** argv) {
     printf("A maior idade foi: %d anos\n", questao2);
     
     //media salarios
-    for (i=1; i<=estudos; ++i){
-        soma += salario[i];
+    for (i=1; i<=contador; ++i){
+        questao3 += salario[i];
     }
-    printf("Media dos salarios: %.2lf euros\n", soma/estudos);
+    printf("Media dos salarios: %.2lf euros\n", questao3/contador);
     
     // quantidade do sexo feminino com saldo ate 1500
-    for (i=1; i<=estudos; ++i){
+    for (i=1; i<=contador; ++i){
         if (sexo[i]==2 && salario[i]<=1500 ){
             questao4 = questao4 + 1;
         }
@@ -109,7 +113,7 @@ int main(int argc, char** argv) {
     printf("Existem %d pessoa(s) do sexo feminino com ordenados até 1500 euros.\n", questao4);
     
     //ultima questao
-    for (i=1; i<=estudos; ++i){
+    for (i=1; i<=contador; ++i){
         if (sexo[i]==1 && idade[i]<=35 && idade[i]>18 && estadocivil[i] == 2){
             questao5 = questao5 + 1;
         }
