@@ -36,26 +36,26 @@ int main(int argc, char** argv) {
     int contador=1;
     
     
-    for (i=1; i<=contador; ++i){
-        printf("Questionario nº: %d\n",i);
+    while(1){
+        printf("Questionario nº: %d\n",contador);
         printf("Introduza a sua idade: ");
         scanf("%d", &idades);
         if (idades<0) {
             contador=contador - 1;
-            continue;
+            break;
         }
         else if (idades< 16 && idades>150){
             printf("Valor Invalido. ");
             continue;
         }
         else {
-            idade[i]= idades;
+            idade[contador]= idades;
         }
         //Loop para o sexo
         while(1){
             printf("Introduza o seu sexo ( 1-M, 2-F ): ");
-            scanf("%d", &sexo[i]);
-            if (sexo[i]== 1 || sexo[i]==2){
+            scanf("%d", &sexo[contador]);
+            if (sexo[contador]== 1 || sexo[contador]==2){
                 break;
             }
             else {
@@ -65,8 +65,8 @@ int main(int argc, char** argv) {
         // Loop para o estado civil
         while(1){
             printf("Introduza o seu estado civil: ");
-            scanf("%d", &estadocivil[i]);
-            if (estadocivil[i]>= 1 && estadocivil[i]<=4){
+            scanf("%d", &estadocivil[contador]);
+            if (estadocivil[contador]>= 1 && estadocivil[contador]<=4){
                 break;
             }
             else {
@@ -76,8 +76,8 @@ int main(int argc, char** argv) {
         //Loop para o salario
         while(1){
             printf("Introduza o seu salario: ");
-            scanf("%lf", &salario[i]);
-            if (salario[i]>= 500){
+            scanf("%lf", &salario[contador]);
+            if (salario[contador]>= 500){
                 break;
             }
             else {
