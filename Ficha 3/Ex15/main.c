@@ -18,11 +18,14 @@
 /*
  * 
  */
-//
+void limparBufferEntrada(){
+    char ch;
+    while((ch = getchar()) != '\n' && ch !=EOF);
+}
 int main(int argc, char** argv) {
     int i;
     int idade[estudos];
-    int sexo[estudos];
+    char sexo[estudos];
     int estadocivil[estudos];
     double salario[estudos];
     int idades;
@@ -52,15 +55,19 @@ int main(int argc, char** argv) {
             idade[contador-1]= idades;
         }
         //Loop para o sexo
-        while(1){
-            printf("Introduza o seu sexo ( 1-M, 2-F ): ");
-            scanf("%d", &sexo[contador-1]);
-            if (sexo[contador-1]== 1 || sexo[contador-1]==2){
-                break;
+         while(1){
+            printf("Introduza o seu sexo: ");
+            limparBufferEntrada();
+            sexo[contador-1]= getchar();
+            limparBufferEntrada();
+            if (sexo[contador-1]=='M' || sexo[contador-1]=='m' || sexo[contador-1]=='F' || sexo[contador-1]=='f'){ 
+                 printf("%c", sexo[contador-1]);
+                 break;
             }
             else {
                 printf("Valor Invalido. ");
             }
+            
         }
         // Loop para o estado civil
         while(1){
@@ -108,7 +115,7 @@ int main(int argc, char** argv) {
     
     // quantidade do sexo feminino com saldo ate 1500
     for (i=0; i<=(contador-1); ++i){
-        if (sexo[i]==2 && salario[i]<=1500 ){
+        if (sexo[i]=='F' || sexo[i]=='f' && salario[i]<=1500 ){
             questao4 = questao4 + 1;
         }
     }
@@ -116,7 +123,7 @@ int main(int argc, char** argv) {
     
     //ultima questao
     for (i=0; i<=(contador-1); ++i){
-        if (sexo[i]==1 && idade[i]<=35 && idade[i]>18 && estadocivil[i] == 2){
+        if (sexo[i]=='M' || sexo[i]=='m' && idade[i]<=35 && idade[i]>18 && estadocivil[i] == 2){
             questao5 = questao5 + 1;
         }
     }
