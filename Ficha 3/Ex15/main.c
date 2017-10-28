@@ -26,11 +26,13 @@ int main(int argc, char** argv) {
     int estadocivil[estudos];
     double salario[estudos];
     int idades;
+    //variaveis das questoes
     int questao1= 151;
     int questao2= 15;
     double questao3= 0;
     int questao4= 0;
     int questao5= 0;
+    //contador
     int contador=1;
     
     
