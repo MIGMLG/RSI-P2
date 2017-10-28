@@ -17,14 +17,12 @@
 /*
  * 
  */
-//
 void limparBufferEntrada(){
     char ch;
     while((ch = getchar()) != '\n' && ch !=EOF);
 }
 int main(int argc, char** argv) {
     char sexo[4];
-    char sex;
     int i;
     
     for (i=1; i<=3; ++i){
@@ -34,7 +32,6 @@ int main(int argc, char** argv) {
             printf("Introduza o seu sexo: ");
             sexo[i]= getchar();
             limparBufferEntrada();
-            //printf("%c", sex);
             break;
         }
     }
