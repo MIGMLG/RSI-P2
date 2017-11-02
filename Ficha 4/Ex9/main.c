@@ -18,6 +18,18 @@
  * 
  */
 int main(int argc, char** argv) {
+    int valor;
+    
+    printf("Introduza um valor: ");
+    scanf("%d", &valor);
+    
+    do{
+        
+        printf("Valor: %d", valor);
+        valor-= 1;
+        puts("");
+        
+    }while(valor>=0);
 
     return (EXIT_SUCCESS);
 }
