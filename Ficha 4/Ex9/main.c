@@ -23,13 +23,10 @@ int main(int argc, char** argv) {
     printf("Introduza um valor: ");
     scanf("%d", &valor);
     
-    do{
-        
-        printf("Valor: %d", valor);
-        valor-= 1;
+    for( valor; valor>=0; --valor){
+        printf("%d", valor);
         puts("");
-        
-    }while(valor>=0);
+    }
 
     return (EXIT_SUCCESS);
 }
