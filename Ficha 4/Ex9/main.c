@@ -19,15 +19,18 @@
  */
 int main(int argc, char** argv) {
     int valor;
+    const  int valorinical=0; 
+    
     
     printf("Introduza um valor: ");
     scanf("%d", &valor);
+    const  int valorfinal=valor;
     
-    for( valor; valor>=0; --valor){
-        printf("%d", valor);
+    for (valorinical; (valor-valorfinal)<=valorfinal; ++valor){
+        printf("%d", valor-valorfinal);
         puts("");
     }
-
+    
     return (EXIT_SUCCESS);
 }
 
