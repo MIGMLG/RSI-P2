@@ -19,18 +19,54 @@
 /*
  * 
  */
+void pares(int valores[]){
+    int i;
+    printf("Numeros pares: ");
+    for(i=0; i<TAMANHO; ++i){
+        if( valores[i]%2==0){
+            printf("%d,", valores[i]);
+        }
+    }
+    
+}
+void impares(int valores[]){
+    int i;
+    printf("Numeros impares: ");
+    for(i=0; i<TAMANHO; ++i){
+        if( valores[i]%2>0){
+            printf("%d,", valores[i]);
+        }
+    }
+}
+
 int main(int argc, char** argv) {
-    double valores[TAMANHO];
+    int valores[TAMANHO];
     int i;
     char opcao;
     
     for(i=0; i< TAMANHO; ++i){
         printf("Introduza um valor: ");
-        scanf("%lf", &valores[i]);
+        scanf("%d", &valores[i]);
     }
     
-    printf("Deseja verificar os numeros pares ou impares ? (P/I)");
-    
+    while(1){
+        printf("Deseja verificar os numeros pares ou impares ? (P/I): ");
+        limparBufferEntrada();
+        scanf("%c", &opcao);
+        limparBufferEntrada();
+        
+        if(opcao=='P' || opcao=='p'){
+            pares(valores);
+            break;
+        }
+        else if(opcao=='I' || opcao=='i'){
+            impares(valores);
+            break;
+        }
+        else{
+            printf("Opcao Invalida. ");
+        }
+    }
     
     return (EXIT_SUCCESS);
 }
