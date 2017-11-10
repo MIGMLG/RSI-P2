@@ -13,12 +13,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "mytools.h"
+#define TAMANHO 10
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-
+    double valores[TAMANHO];
+    int i;
+    char opcao;
+    
+    for(i=0; i< TAMANHO; ++i){
+        printf("Introduza um valor: ");
+        scanf("%lf", &valores[i]);
+    }
+    
+    printf("Deseja verificar os numeros pares ou impares ? (P/I)");
+    
+    
     return (EXIT_SUCCESS);
 }
 
