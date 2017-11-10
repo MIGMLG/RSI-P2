@@ -13,12 +13,27 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#define TAMANHO 10
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-
+    int A[TAMANHO];
+    int B[TAMANHO];
+    int i;
+    
+    for(i=0; i< TAMANHO; ++i){
+        printf("Introduza os  valores do Array A: ");
+        scanf("%d", &A[i]);
+    }
+    
+    for(i=0; i< TAMANHO; ++i){
+        printf("Introduza os  valores do Array B: ");
+        scanf("%d", &B[i]);
+    }
+    
+    
     return (EXIT_SUCCESS);
 }
 
