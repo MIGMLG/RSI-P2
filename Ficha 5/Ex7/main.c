@@ -42,6 +42,7 @@ void arrayC(int A[], int B[], int C[]){
 
 void arrayD(int A[], int B[], int D[]){
     int i,j, contador=0, contadorarray=0;
+    
     for(i=0; i< TAMANHO; ++i){
         for(j=0; j< TAMANHO; ++j){
             if(A[i]==B[j]){
@@ -59,24 +60,23 @@ void arrayD(int A[], int B[], int D[]){
     }
 }
 void arrayE(int A[], int B[], int E[]){
-    int i,j,k, contador=0, contadorarray=0;
-    
+    int i, j, k, verificador=0, contador=0;
+
     for(i=0; i< TAMANHO; ++i){
         for(j=0; j< TAMANHO; ++j){
             if(A[i]==B[j]){
-                contador+=1;
+                for(k=i+1; k<TAMANHO; ++k){
+                    if(A[i]==A[k] && i!=j){
+                        verificador+=1;
+                    }
+                }
+                if(verificador==0){
+                    E[contador]=A[i];
+                    contador+=1;
+                }
             }
         }
-        if(contador==1){
-            E[contadorarray]=A[i];
-            contadorarray+=1;
-        }
-        else{
-            //implentar resto do codigo aqui XD
-        }
-        contador=0;
-    }
-    
+    }    
 }
 
 
@@ -89,15 +89,11 @@ int main(int argc, char** argv) {
     int i;
     
     arrayA(A);
-    puts("------------------------------------------------------------------------");
+    puts("-----------------------------------");
     arrayB(B);
     arrayC(A,B,C);
     arrayD(A,B,D);
     arrayE(A,B,E);
-    
-    for(i=0; i<TAMANHO; ++i){
-        printf("Array E: %d", E[i]);
-    }
     
     return (EXIT_SUCCESS);
 }
