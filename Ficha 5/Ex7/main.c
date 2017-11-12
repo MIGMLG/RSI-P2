@@ -70,6 +70,11 @@ void arrayE(int A[], int B[], int E[]){
                         verificador+=1;
                     }
                 }
+                for(k=i+1; k<TAMANHO; ++k){
+                    if(B[i]==B[k] && i!=j){
+                        verificador+=1;
+                    }
+                }
                 if(verificador==0){
                     E[contador]=A[i];
                     contador+=1;
@@ -94,6 +99,10 @@ int main(int argc, char** argv) {
     arrayC(A,B,C);
     arrayD(A,B,D);
     arrayE(A,B,E);
+    
+    for(i=0; i<TAMANHO; ++i){
+        printf("Array E: %d", E[i]); 
+   } 
     
     return (EXIT_SUCCESS);
 }
