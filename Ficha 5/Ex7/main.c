@@ -59,23 +59,33 @@ void arrayD(int A[], int B[], int D[]){
         contador=0;
     }
 }
-void arrayE(int A[], int B[], int E[]){
-    int i, j, k, verificador=0, contador=0;
+void arrayE(int A[], int B[], double E[]){
+    int i, j, k, l, verificador1=0, verificador2=0, contador=0;
+    
+    for(i=0; i< TAMANHO; ++i){
+        E[i]=0.5;
+    }
 
     for(i=0; i< TAMANHO; ++i){
         for(j=0; j< TAMANHO; ++j){
             if(A[i]==B[j]){
-                for(k=i+1; k<TAMANHO; ++k){
+                verificador1=0;
+                for(k=j; k<TAMANHO; ++k){
                     if(A[i]==A[k]){
-                        verificador+=1;
+                        verificador1+=1;
                     }
                 }
-                for(k=i+1; k<TAMANHO; ++k){
-                    if(B[i]==B[k]){
-                        verificador+=1;
+                verificador2=0;
+                for(l=0; l<TAMANHO; ++l){
+                    if(A[i]==E[l]){
+                        verificador2+=1;
                     }
                 }
-                if(verificador==0){
+                if(verificador2>0){
+                    break;
+                }
+                
+                 if(verificador1==1){
                     E[contador]=A[i];
                     contador+=1;
                 }
@@ -90,7 +100,7 @@ int main(int argc, char** argv) {
     int B[TAMANHO];
     int C[TAMANHO];
     int D[TAMANHO];
-    int E[TAMANHO];
+    double E[TAMANHO];
     int i;
     
     arrayA(A);
@@ -101,7 +111,7 @@ int main(int argc, char** argv) {
     arrayE(A,B,E);
     
     for(i=0; i<TAMANHO; ++i){
-        printf("Valor: %d\n", E[i]);
+        printf("Valor: %.2lf\n", E[i]);
     }
     
     return (EXIT_SUCCESS);
