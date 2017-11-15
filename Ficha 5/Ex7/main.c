@@ -66,12 +66,12 @@ void arrayE(int A[], int B[], int E[]){
         for(j=0; j< TAMANHO; ++j){
             if(A[i]==B[j]){
                 for(k=i+1; k<TAMANHO; ++k){
-                    if(A[i]==A[k] && i!=j){
+                    if(A[i]==A[k]){
                         verificador+=1;
                     }
                 }
                 for(k=i+1; k<TAMANHO; ++k){
-                    if(B[i]==B[k] && i!=j){
+                    if(B[i]==B[k]){
                         verificador+=1;
                     }
                 }
@@ -101,8 +101,8 @@ int main(int argc, char** argv) {
     arrayE(A,B,E);
     
     for(i=0; i<TAMANHO; ++i){
-        printf("Array E: %d", E[i]); 
-   } 
+        printf("Valor: %d\n", E[i]);
+    }
     
     return (EXIT_SUCCESS);
 }
