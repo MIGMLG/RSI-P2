@@ -101,7 +101,6 @@ int main(int argc, char** argv) {
     int C[TAMANHO];
     int D[TAMANHO];
     double E[TAMANHO];
-    int i;
     
     arrayA(A);
     puts("-----------------------------------");
@@ -109,10 +108,6 @@ int main(int argc, char** argv) {
     arrayC(A,B,C);
     arrayD(A,B,D);
     arrayE(A,B,E);
-    
-    for(i=0; i<TAMANHO; ++i){
-        printf("Valor: %.2lf\n", E[i]);
-    }
     
     return (EXIT_SUCCESS);
 }
