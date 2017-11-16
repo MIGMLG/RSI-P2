@@ -17,19 +17,22 @@
 #include "utils.h"
 #define TAMANHO 25
 
-
 /*
  * 
  */
 int main(int argc, char** argv) {
     char frase1[TAMANHO];
     char frase2[TAMANHO];
- 
+    char frase3[1]=",";
     
     printf("Escreva algo: ");
     lerString(frase1, TAMANHO);
     printf("Escreva algo: ");
     lerString(frase2, TAMANHO);
+    
+    strcat(frase1,frase3);
+    
+    printf("Frase: %s", frase1);
     
     return (EXIT_SUCCESS);
 }
