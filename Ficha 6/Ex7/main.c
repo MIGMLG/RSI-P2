@@ -14,17 +14,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#define TAMANHO 25
+#define TAMANHO 50
 
 /*
  * 
  */
 int main(int argc, char** argv) {
     char frase1[TAMANHO];
+    int i, contador =0;
+    
+    
+    for(i=0; i<TAMANHO; ++i){
+        frase1[i]=' ';
+    }
     
     printf("Escreva algo: ");
     lerString(frase1, TAMANHO);
-
+    
+    for(i=0; i<TAMANHO; ++i){
+        if(frase1[i]==' '){
+            continue;
+        }
+        else{
+            contador+=1;
+        }
+    }
+    
+    printf("Nr de chars: %d", contador-2);
+    
     return (EXIT_SUCCESS);
 }
 
