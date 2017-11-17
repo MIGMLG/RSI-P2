@@ -27,3 +27,15 @@ void countChar(char array[], char letra){
     }
     printf("Existem %d letras \"%c\" na frase.", contador, letra);
 }
+
+int lastIndex(char letra, char array[], int fimarray){
+    int i, posicao=-1;
+    
+    for(i=0; i<fimarray; ++i){
+        if(array[i]==letra){
+            posicao=i;
+        }
+    }
+    
+    return posicao;
+}
