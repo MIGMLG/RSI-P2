@@ -22,9 +22,9 @@
 void print(int matriz[][COLUNAS]){
     int i, j;
     
-    for(i=0; i<LINHAS; ++i){
-        for(j=0; j<COLUNAS; ++j){
-            //printf("%d", transposta[i][j] );   
+    for(i=0; i<LINHAS ; ++i){
+        for(j=(COLUNAS-1); j>=0; --j){
+            printf("%d", matriz[j][i] );   
         }
         puts("");
     } 
