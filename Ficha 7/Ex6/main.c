@@ -8,7 +8,7 @@
  * File:   main.c
  * Author: Miguel Costa
  *
- * Created on 23 de Novembro de 2017, 20:47
+ * Created on 23 de Novembro de 2017, 22:11
  */
 
 #include <stdio.h>
@@ -37,7 +37,7 @@ int input(){
 }
 
 int main(int argc, char** argv) {
-    int i,j,k;
+    int i,j,k, soma;
     int linhas1, linhas2, colunas1, colunas2;
     
     printf("Matriz 1: \n");
@@ -90,6 +90,15 @@ int main(int argc, char** argv) {
         }
     }
     
+    for(i=0; i< linhas1; ++i){
+        for(j=0; j< colunas2; ++j){
+            soma=0;
+            for(k=0; k< colunas2; ++k){
+                soma= soma + (matriz1[i][k]*matriz2[k][j]);
+            }
+            matriz3[i][j] = soma;
+        }
+    }
     
     puts("");
     printf("Matriz 3: ");
