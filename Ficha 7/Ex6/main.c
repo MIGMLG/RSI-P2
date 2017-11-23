@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
     for(i=0; i<linhas2; ++i){
         for(j=0; j<colunas2; ++j){
             printf("Posicao [%d] [%d] : ", i,j);
-            scanf("%d", &matriz1[i][j]);
+            scanf("%d", &matriz2[i][j]);
         }
     }
     
