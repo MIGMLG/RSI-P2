@@ -37,7 +37,7 @@ int input(){
 }
 
 int main(int argc, char** argv) {
-    int i,j;
+    int i,j,k;
     int linhas1, linhas2, colunas1, colunas2;
     
     printf("Matriz 1: \n");
@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
     linhas1=input();
     printf("Introduza as colunas agora.\n");
     colunas1=input();
-    
+    puts("");
     printf("Matriz 2: \n");
     printf("Introduza as linhas primeiro.\n");
     
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     
     
     int matriz2[linhas2][colunas2];
-    
+    puts("");
     printf("Prrenceher Matriz 1: \n");
     for(i=0; i<linhas1; ++i){
         for(j=0; j<colunas1; ++j){
@@ -81,8 +81,14 @@ int main(int argc, char** argv) {
         }
     }
     
-    
-    
+    int matriz3[linhas1][colunas2];
+    for (i=0;i<linhas1; ++i) {
+        for (j=0; j<linhas1; ++j) {
+            for (k=0; k<colunas2; ++k) {
+                matriz3[i][j] = matriz3[i][j] + (matriz1[i][k] * matriz2[k][j]); 
+            }
+        }
+    }
     
     return (EXIT_SUCCESS);
 }
