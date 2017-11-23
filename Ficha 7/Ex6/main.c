@@ -90,13 +90,6 @@ int main(int argc, char** argv) {
         }
     }
     
-    for (i=0;i<linhas1; i++) {
-      for (j=0; j<linhas1; j++) {
-        for (k=0; k<colunas1; k++) {
-          matriz3[i][j] = matriz3[i][j] + (matriz1[i][k] * matriz2[k][j]); 
-        }
-      }
-    }
     
     puts("");
     printf("Matriz 3: ");
