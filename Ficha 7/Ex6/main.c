@@ -37,6 +37,7 @@ int input(){
 }
 
 int main(int argc, char** argv) {
+    int i,j;
     int linhas1, linhas2, colunas1, colunas2;
     
     printf("Matriz 1: \n");
@@ -59,20 +60,30 @@ int main(int argc, char** argv) {
     }
     
     printf("Introduza as colunas agora.\n");
+    colunas2=input();
     
-    while(1){
-        colunas2=input();
-        if(colunas2==linhas1){
-            break;
-        }
-        printf("Valor Invalido. ");
-    }
     
     int matriz2[linhas2][colunas2];
-
-  
     
-    printf("Ola");
+    printf("Prrenceher Matriz 1: \n");
+    for(i=0; i<linhas1; ++i){
+        for(j=0; j<colunas1; ++j){
+            printf("Posicao [%d] [%d] : ", i,j);
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+    puts("");
+    printf("Prrenceher Matriz 2: \n");
+    for(i=0; i<linhas2; ++i){
+        for(j=0; j<colunas2; ++j){
+            printf("Posicao [%d] [%d] : ", i,j);
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+    
+    
+    
+    
     return (EXIT_SUCCESS);
 }
 
