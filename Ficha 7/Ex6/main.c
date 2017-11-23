@@ -8,7 +8,7 @@
  * File:   main.c
  * Author: Miguel Costa
  *
- * Created on 23 de Novembro de 2017, 19:02
+ * Created on 23 de Novembro de 2017, 20:47
  */
 
 #include <stdio.h>
@@ -85,27 +85,30 @@ int main(int argc, char** argv) {
     double matriz3[linhas1][colunas2];
     
     for(i=0; i< linhas1; ++i){
-        for(j=0; j< colunas2; ++i){
+        for(j=0; j< colunas2; ++j){
             matriz3[i][j]=0;
         }
     }
     
-    for (i=0;i<linhas1; ++i) {
-        for (j=0; j<linhas1; ++j) {
-            for (k=0; k<colunas1; ++k) {
-                matriz3[i][j] = matriz3[i][j] + (matriz1[i][k] * matriz2[k][j]); 
-            }
+    for (i=0;i<linhas1; i++) {
+      for (j=0; j<linhas1; j++) {
+        for (k=0; k<colunas1; k++) {
+          matriz3[i][j] = matriz3[i][j] + (matriz1[i][k] * matriz2[k][j]); 
         }
+      }
     }
     
     puts("");
     printf("Matriz 3: ");
-
+    puts("");
+    
     for(i=0; i< linhas1; ++i){
-        for(j=0; j< colunas2; ++i){
-            printf("%.2lf", matriz3[i][j]);
+        for(j=0; j< colunas2; ++j){
+            printf("%.2lf, ", matriz3[i][j]);
         }
+        puts("");
     }
+
     
     return (EXIT_SUCCESS);
 }
