@@ -23,7 +23,7 @@
 int main(int argc, char** argv) {
     char frase1[TAMANHO];
     char frase2[TAMANHO];
-    char frase3[1]=",";
+    char frase3[2]=",\0";
     
     printf("Escreva algo: ");
     lerString(frase1, TAMANHO);
@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
     lerString(frase2, TAMANHO);
     
     strcat(frase1,frase3);
+    strcat(frase1,frase2);
     
     printf("Frase: %s", frase1);
     
