@@ -91,9 +91,10 @@ int main(int argc, char** argv) {
             }
         }
     }
-    puts("");
     
+    puts("");
     printf("Matriz 3: ");
+
     for(i=0; i< linhas1; ++i){
         for(j=0; j< colunas2; ++i){
             printf("%d", matriz3[i][j]);
