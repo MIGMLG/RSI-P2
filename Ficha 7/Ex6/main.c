@@ -47,13 +47,32 @@ int main(int argc, char** argv) {
     
     printf("Matriz 2: \n");
     printf("Introduza as linhas primeiro.\n");
-    linhas2=input();
+    
+    int matriz1[linhas1][colunas1];
+    
+    while(1){
+        linhas2=input();
+        if(linhas2==colunas1){
+            break;
+        }
+        printf("Valor Invalido. ");
+    }
+    
     printf("Introduza as colunas agora.\n");
-    colunas2=input();
     
+    while(1){
+        colunas2=input();
+        if(colunas2==linhas1){
+            break;
+        }
+        printf("Valor Invalido. ");
+    }
     
-    
+    int matriz2[linhas2][colunas2];
 
+  
+    
+    printf("Ola");
     return (EXIT_SUCCESS);
 }
 
