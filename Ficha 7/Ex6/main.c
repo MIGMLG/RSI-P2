@@ -82,11 +82,17 @@ int main(int argc, char** argv) {
         }
     }
     
-    int matriz3[linhas1][colunas2];
+    double matriz3[linhas1][colunas2];
+    
+    for(i=0; i< linhas1; ++i){
+        for(j=0; j< colunas2; ++i){
+            matriz3[i][j]=0;
+        }
+    }
     
     for (i=0;i<linhas1; ++i) {
         for (j=0; j<linhas1; ++j) {
-            for (k=0; k<colunas2; ++k) {
+            for (k=0; k<colunas1; ++k) {
                 matriz3[i][j] = matriz3[i][j] + (matriz1[i][k] * matriz2[k][j]); 
             }
         }
@@ -97,7 +103,7 @@ int main(int argc, char** argv) {
 
     for(i=0; i< linhas1; ++i){
         for(j=0; j< colunas2; ++i){
-            printf("%d", matriz3[i][j]);
+            printf("%.2lf", matriz3[i][j]);
         }
     }
     
