@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
     for(i=0; i< linhas1; ++i){
         for(j=0; j< colunas2; ++j){
             soma=0;
-            for(k=0; k< colunas2; ++k){
+            for(k=0; k< linhas2; ++k){
                 soma= soma + (matriz1[i][k]*matriz2[k][j]);
             }
             matriz3[i][j] = soma;
