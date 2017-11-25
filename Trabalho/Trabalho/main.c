@@ -35,15 +35,23 @@ void printMatriz(char matriz[][TAMATRIZ]){
     
 }
 
-int checkjogadas(char matriz[][TAMATRIZ], char tokens[], char posicao[TAMPOS], int valorvalido){
-    valorvalido=0;
-    return valorvalido;
+int checkjogadas(char matriz[][TAMATRIZ], char tokens[], char coluna){
+
+    if(coluna=='A' || coluna=='a'){
+        return 1;
+    }
+    else if(coluna=='B' || coluna=='b'){
+        return 1;
+    }
+
+    return 0;
 }
 
 void jogadas(char matriz[][TAMATRIZ], char tokens[]){
     int fim=0;
     int valorvalido;
-    char posicao[TAMPOS];
+    char coluna;
+    int linha;
     
     //Loop para correr as jogadas seguidas pedindo as coordenadas e imprimindo a matriz alterada
     puts("");
@@ -51,9 +59,13 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         
         //Pede as coordenadas ao Jogador 1 e Verifica se é possivel fazer a jogada
         while(1){
-            printf("Jogador 1 introduza as coordenadas: ");
-            lerString(posicao, TAMPOS);
-            valorvalido=checkjogadas(matriz,tokens,posicao,valorvalido);
+            
+            printf("Jogador 1 introduza a coluna: ");
+            scanf("%c", &coluna);
+            clean_buffer();
+            printf("Jogador 1 introduza a linha: ");
+            scanf("%d", &linha);
+            valorvalido=checkjogadas(matriz,tokens,coluna);
             if(valorvalido==0){
                 continue;
             }
@@ -65,12 +77,16 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
             
         }
-        
+        coluna=' ';
         //Pede as coordenadas ao Jogador 2 e Verifica se é possivel fazer a jogada
         while(1){
-            printf("Jogador 2 introduza as coordenadas: ");
-            lerString(posicao, TAMPOS);
-            valorvalido=checkjogadas(matriz,tokens,posicao,valorvalido);
+            printf("Jogador 2 introduza a coluna: ");
+            clean_buffer();
+            scanf("%c", &coluna);
+            clean_buffer();
+            printf("Jogador 2 introduza a linha: ");
+            scanf("%d", &linha);
+            valorvalido=checkjogadas(matriz,tokens,coluna);
             if(valorvalido==0){
                 continue;
             }
@@ -81,7 +97,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 break;
             }
         }
-  
+        clean_buffer();
         //Para caso o jogador tenha Ganho o Jogo
         if(fim>0){
             break;
@@ -139,7 +155,7 @@ int main(int argc, char** argv) {
     criarMatriz(matriz);
     printMatriz(matriz);
     jogadas(matriz,tokens);
-   
+    
     return (EXIT_SUCCESS);
 }
 
