@@ -100,7 +100,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
 
 void jogadas(char matriz[][TAMATRIZ], char tokens[]){
     int fim=0;
-    int valorvalido;
+    int valorvalido=1;
     char coluna;
     int linha;
     
@@ -110,6 +110,9 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         
         //Pede as coordenadas ao Jogador 1 e Verifica se é possivel fazer a jogada
         while(1){
+            if(valorvalido==0){
+                clean_buffer();
+            }
             printf("Jogador 1 introduza a coluna: ");
             scanf("%c", &coluna);
             clean_buffer();
