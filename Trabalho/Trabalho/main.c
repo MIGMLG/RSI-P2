@@ -145,6 +145,13 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
         puts("Posicao Inexistente.");
         return 0;
     }
+    else if(coluna=='Z' || coluna=='z'){
+        if(linha=0){            
+            return 10; 
+        }
+        puts("Posicao Inexistente.");
+        return 0;
+    }
     else{
         puts("Posicao Inexistente.");
         return 0;  
@@ -154,7 +161,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
 }
 
 void jogadas(char matriz[][TAMATRIZ], char tokens[]){
-    int fim=0;
+    int fim1=0;
+    int fim2=0;
     int valorvalido=1;
     char coluna;
     int linha;
@@ -177,6 +185,9 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             if(valorvalido==0){
                 continue;
             }
+            else if(valorvalido=10){
+                fim2+=1;
+            }
             else{
                 puts("");
                 printMatriz(matriz);
@@ -187,7 +198,12 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         }
         
         //Para caso o jogador tenha Ganho o Jogo
-        if(fim>0){
+        if(fim1>0){
+            printf("O jogador 1 ganhou.");
+            break;
+        }
+        if(fim2>0){
+            printf("O jogador 2 ganhou.");
             break;
         }
         
@@ -203,6 +219,9 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             if(valorvalido==0){
                 continue;
             }
+            else if(valorvalido=10){
+                fim1+=1;
+            }
             else{
                 puts("");
                 printMatriz(matriz);
@@ -213,9 +232,15 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         clean_buffer();
         
         //Para caso o jogador tenha Ganho o Jogo
-        if(fim>0){
+        if(fim1>0){
+            printf("O jogador 1 ganhou.");
             break;
         }
+        if(fim2>0){
+            printf("O jogador 2 ganhou.");
+            break;
+        }
+        
         
     }
 }
