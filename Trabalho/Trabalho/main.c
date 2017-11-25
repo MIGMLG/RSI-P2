@@ -185,7 +185,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             if(valorvalido==0){
                 continue;
             }
-            else if(valorvalido=10){
+            else if(valorvalido==10){
                 fim2+=1;
             }
             else{
@@ -219,7 +219,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             if(valorvalido==0){
                 continue;
             }
-            else if(valorvalido=10){
+            else if(valorvalido==10){
                 fim1+=1;
             }
             else{
