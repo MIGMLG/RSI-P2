@@ -21,6 +21,7 @@
 /*
  * 
  */
+
 void printMatriz(char matriz[][TAMATRIZ]){
     int i,j;
     //Imprime a Matriz
