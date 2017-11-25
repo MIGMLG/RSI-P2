@@ -146,7 +146,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
         return 0;
     }
     else if(coluna=='Z' || coluna=='z'){
-        if(linha=0){            
+        if(linha==0){            
             return 10; 
         }
         puts("Posicao Inexistente.");
