@@ -44,11 +44,16 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
         return 1;
     }
     else if(coluna=='B' || coluna=='b'){
-        
+        if(linha>0 && linha<10){
+            matriz[linha][2]=tokens;
+        }
         return 1;
     }
+    else{
+      return 0;  
+    }
 
-    return 0;
+    
 }
 
 void jogadas(char matriz[][TAMATRIZ], char tokens[]){
@@ -63,7 +68,6 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         
         //Pede as coordenadas ao Jogador 1 e Verifica se é possivel fazer a jogada
         while(1){
-            
             printf("Jogador 1 introduza a coluna: ");
             scanf("%c", &coluna);
             clean_buffer();
@@ -81,11 +85,10 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
             
         }
-        coluna=' ';
         //Pede as coordenadas ao Jogador 2 e Verifica se é possivel fazer a jogada
         while(1){
-            printf("Jogador 2 introduza a coluna: ");
             clean_buffer();
+            printf("Jogador 2 introduza a coluna: ");
             scanf("%c", &coluna);
             clean_buffer();
             printf("Jogador 2 introduza a linha: ");
