@@ -14,26 +14,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#define TAMANHO 25
+#define pecas 2
 
 /*
  * 
  */
-char nomeJogador(char *jogador){
+
+void escolherTokens(char tokens[]){
+    int i;
     
-    printf("Introduza o nome do jogador: ");
-    lerString(jogador, TAMANHO);
+    for(i=0; i<pecas; ++i){
+        printf("Jogador %d escolha o seu token: ", i);
+        scanf("%c", &tokens[i]);
+        clean_buffer();
+    }
     
-    return 0;
 }
 
 int main(int argc, char** argv) {
-    char jogador1[TAMANHO];
-    char jogador2[TAMANHO];
+    char tokens [pecas];
     
-    nomeJogador(jogador1);
-    nomeJogador(jogador2);
-       
+    escolherTokens(tokens);
+    
+
     return (EXIT_SUCCESS);
 }
 
