@@ -187,6 +187,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
             else if(valorvalido==10){
                 fim2+=1;
+                break;
             }
             else{
                 puts("");
@@ -221,6 +222,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
             else if(valorvalido==10){
                 fim1+=1;
+                break;
             }
             else{
                 puts("");
