@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#define TAMPOS 2
 #define TAMATRIZ 10
 #define PECAS 2
 
@@ -31,6 +32,29 @@ void printMatriz(char matriz[][TAMATRIZ]){
         puts(" ");
     }
     
+}
+
+void jogadas(char matriz[][TAMATRIZ], char tokens[]){
+    int fim=0;
+    int i;
+    char posicao[TAMPOS];
+    
+    //Loop para correr as jogadas seguidas pedindo as coordenadas e imprimindo a matriz alterada
+    puts("");
+    while(1){
+        for(i=0; i<PECAS; ++i){
+            printf("Jogador %d introduza as coordenadas: ", i+1);
+            lerString(posicao, TAMPOS);
+            //Implementar Check
+            puts("");
+            printMatriz(matriz);
+            puts("");
+        }
+        //Para caso o jogador tenha Ganho o Jogo
+        if(fim>0){
+            break;
+        }
+    }
 }
 
 void criarMatriz(char matriz[][TAMATRIZ]){
@@ -81,6 +105,7 @@ int main(int argc, char** argv) {
     escolherTokens(tokens);
     criarMatriz(matriz);
     printMatriz(matriz);
+    jogadas(matriz,tokens);
    
     return (EXIT_SUCCESS);
 }
