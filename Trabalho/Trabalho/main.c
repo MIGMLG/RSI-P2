@@ -43,6 +43,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][1]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0;  
         }
     }
@@ -52,6 +53,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][2]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -61,6 +63,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][3]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -70,6 +73,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][4]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -79,6 +83,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][5]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -88,6 +93,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][6]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -97,6 +103,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][7]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -106,6 +113,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][8]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }
     }
@@ -115,11 +123,13 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
               matriz[linha][9]=tokens;
               return 1;  
             }
+            puts("Posicao Ocupada.");
             return 0; 
         }  
     }
     else{
-      return 0;  
+        puts("Posicao Inexistente.");
+        return 0;  
     }
 
     
