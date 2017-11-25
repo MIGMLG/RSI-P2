@@ -56,6 +56,16 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
         }
     }
     
+    //verifica as diagonais da esquerda para a direita
+    for(i=0; i<(TAMATRIZ - 3); ++i){
+        for(j=0; j<(TAMATRIZ - 3); ++j){
+             if(matriz[i][j]==tokens && matriz[i][j]==matriz[i+1][j+1] && matriz[i][j]==matriz[i+2][j+2])
+                 return 1;
+        }
+    }
+    
+    //verifica as diagonais da direita para a esquerda
+    
     return 0;
 }
 
