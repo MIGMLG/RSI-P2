@@ -36,7 +36,7 @@ void printMatriz(char matriz[][TAMATRIZ]){
 }
 
 int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
-    //Verifica se a coluna e a linha existe
+    //Verifica se a coluna e a linha existe. Se sim altera a posição na matriz
     if(coluna=='A' || coluna=='a'){
         if(linha>0 && linha<10){
             if(matriz[linha][1]=='-'){
