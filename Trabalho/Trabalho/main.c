@@ -40,56 +40,56 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
     if(coluna=='A' || coluna=='a'){
         if(linha>0 && linha<10){
             matriz[linha][1]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='B' || coluna=='b'){
         if(linha>0 && linha<10){
             matriz[linha][2]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='C' || coluna=='c'){
         if(linha>0 && linha<10){
             matriz[linha][3]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='D' || coluna=='d'){
         if(linha>0 && linha<10){
             matriz[linha][4]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='E' || coluna=='e'){
         if(linha>0 && linha<10){
             matriz[linha][5]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='F' || coluna=='f'){
         if(linha>0 && linha<10){
             matriz[linha][6]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='G' || coluna=='g'){
         if(linha>0 && linha<10){
             matriz[linha][7]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='H' || coluna=='h'){
         if(linha>0 && linha<10){
             matriz[linha][8]=tokens;
+            return 1;
         }
-        return 1;
     }
     else if(coluna=='I' || coluna=='i'){
         if(linha>0 && linha<10){
             matriz[linha][9]=tokens;
-        }
-        return 1;
+            return 1;
+        }  
     }
     else{
       return 0;  
