@@ -35,6 +35,12 @@ void printMatriz(char matriz[][TAMATRIZ]){
     
 }
 
+int vitoria(char matriz[][TAMATRIZ], char tokens){
+    int i,j;
+    
+    return 0;
+}
+
 int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
     //Verifica se a coluna e a linha existe. Se sim altera a posição na matriz
     if(coluna=='A' || coluna=='a'){
@@ -197,6 +203,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 printMatriz(matriz);
                 puts("");
                 jogadas1+=1;
+                fim1=vitoria(matriz,tokens[0]);
                 break;
             }
             
@@ -233,6 +240,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 printMatriz(matriz);
                 puts("");
                 jogadas2+=1;
+                fim1=vitoria(matriz,tokens[1]);
                 break;
             }
         }
