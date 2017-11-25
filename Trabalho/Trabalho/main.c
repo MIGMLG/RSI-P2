@@ -22,7 +22,7 @@
  */
 void printMatriz(char matriz[][TAMATRIZ]){
     int i,j;
-    
+    //Imprime a Matriz
     for(i=0; i< TAMATRIZ; ++i){
         for(j=0; j< TAMATRIZ; ++j){
             printf("%c", matriz[i][j]);
@@ -65,10 +65,11 @@ void escolherTokens(char tokens[]){
     
     //Premite a escolha dos tokens e guarda no array de chars
     for(i=0; i<PECAS; ++i){
-        printf("Jogador %d escolha o seu token: ", i);
+        printf("Jogador %d escolha o seu token: ", i+1);
         scanf("%c", &tokens[i]);
         clean_buffer();
     }
+    puts("");
     
 }
 
