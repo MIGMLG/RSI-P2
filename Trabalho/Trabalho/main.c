@@ -46,6 +46,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0;  
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='B' || coluna=='b'){
         if(linha>0 && linha<10){
@@ -56,6 +58,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='C' || coluna=='c'){
         if(linha>0 && linha<10){
@@ -66,6 +70,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='D' || coluna=='d'){
         if(linha>0 && linha<10){
@@ -76,6 +82,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='E' || coluna=='e'){
         if(linha>0 && linha<10){
@@ -86,6 +94,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='F' || coluna=='f'){
         if(linha>0 && linha<10){
@@ -96,6 +106,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='G' || coluna=='g'){
         if(linha>0 && linha<10){
@@ -106,6 +118,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0; 
     }
     else if(coluna=='H' || coluna=='h'){
         if(linha>0 && linha<10){
@@ -116,6 +130,8 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             puts("Posicao Ocupada.");
             return 0; 
         }
+        puts("Posicao Inexistente.");
+        return 0;
     }
     else if(coluna=='I' || coluna=='i'){
         if(linha>0 && linha<10){
@@ -125,7 +141,9 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
             }
             puts("Posicao Ocupada.");
             return 0; 
-        }  
+        }
+        puts("Posicao Inexistente.");
+        return 0;
     }
     else{
         puts("Posicao Inexistente.");
