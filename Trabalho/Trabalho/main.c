@@ -35,12 +35,16 @@ void printMatriz(char matriz[][TAMATRIZ]){
     
 }
 
-int checkjogadas(char matriz[][TAMATRIZ], char tokens[], char coluna){
+int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
 
     if(coluna=='A' || coluna=='a'){
+        if(linha>0 && linha<10){
+            matriz[linha][1]=tokens;
+        }
         return 1;
     }
     else if(coluna=='B' || coluna=='b'){
+        
         return 1;
     }
 
@@ -65,7 +69,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             clean_buffer();
             printf("Jogador 1 introduza a linha: ");
             scanf("%d", &linha);
-            valorvalido=checkjogadas(matriz,tokens,coluna);
+            valorvalido=checkjogadas(matriz,tokens[0],coluna,linha);
             if(valorvalido==0){
                 continue;
             }
@@ -86,7 +90,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             clean_buffer();
             printf("Jogador 2 introduza a linha: ");
             scanf("%d", &linha);
-            valorvalido=checkjogadas(matriz,tokens,coluna);
+            valorvalido=checkjogadas(matriz,tokens[1],coluna,linha);
             if(valorvalido==0){
                 continue;
             }
