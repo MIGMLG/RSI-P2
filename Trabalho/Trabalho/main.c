@@ -26,6 +26,7 @@ void printMatriz(char matriz[][TAMATRIZ]){
     for(i=0; i< TAMATRIZ; ++i){
         for(j=0; j< TAMATRIZ; ++j){
             printf("%c", matriz[i][j]);
+            printf("|");
         }
         puts(" ");
     }
