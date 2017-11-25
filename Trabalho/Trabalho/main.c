@@ -145,6 +145,7 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
         puts("Posicao Inexistente.");
         return 0;
     }
+    //Verificar a posição para desitir
     else if(coluna=='Z' || coluna=='z'){
         if(linha==0){            
             return 10; 
@@ -166,6 +167,8 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
     int valorvalido=1;
     char coluna;
     int linha;
+    int jogadas1=0;
+    int jogadas2=0;
     
     //Loop para correr as jogadas seguidas pedindo as coordenadas e imprimindo a matriz alterada
     puts("");
@@ -193,6 +196,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 puts("");
                 printMatriz(matriz);
                 puts("");
+                jogadas1+=1;
                 break;
             }
             
@@ -200,11 +204,11 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         
         //Para caso o jogador tenha Ganho o Jogo
         if(fim1>0){
-            printf("O jogador 1 ganhou.");
+            printf("O jogador 1 ganhou. Nr de jogadas: %d", jogadas1);
             break;
         }
         if(fim2>0){
-            printf("O jogador 2 ganhou.");
+            printf("O jogador 2 ganhou. Nr de jogadas: %d", jogadas2);
             break;
         }
         
@@ -228,6 +232,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 puts("");
                 printMatriz(matriz);
                 puts("");
+                jogadas2+=1;
                 break;
             }
         }
@@ -235,11 +240,11 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         
         //Para caso o jogador tenha Ganho o Jogo
         if(fim1>0){
-            printf("O jogador 1 ganhou.");
+            printf("O jogador 1 ganhou. Nr de jogadas: %d", jogadas1);
             break;
         }
         if(fim2>0){
-            printf("O jogador 2 ganhou.");
+            printf("O jogador 2 ganhou. Nr de jogadas: %d", jogadas2);
             break;
         }
         
