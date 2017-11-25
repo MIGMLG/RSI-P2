@@ -39,56 +39,83 @@ int checkjogadas(char matriz[][TAMATRIZ], char tokens, char coluna, int linha){
     //Verifica se a coluna e a linha existe
     if(coluna=='A' || coluna=='a'){
         if(linha>0 && linha<10){
-            matriz[linha][1]=tokens;
-            return 1;
+            if(matriz[linha][1]=='-'){
+              matriz[linha][1]=tokens;
+              return 1;  
+            }
+            return 0;  
         }
     }
     else if(coluna=='B' || coluna=='b'){
         if(linha>0 && linha<10){
-            matriz[linha][2]=tokens;
-            return 1;
+            if(matriz[linha][2]=='-'){
+              matriz[linha][2]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='C' || coluna=='c'){
         if(linha>0 && linha<10){
-            matriz[linha][3]=tokens;
-            return 1;
+            if(matriz[linha][3]=='-'){
+              matriz[linha][3]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='D' || coluna=='d'){
         if(linha>0 && linha<10){
-            matriz[linha][4]=tokens;
-            return 1;
+            if(matriz[linha][4]=='-'){
+              matriz[linha][4]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='E' || coluna=='e'){
         if(linha>0 && linha<10){
-            matriz[linha][5]=tokens;
-            return 1;
+            if(matriz[linha][5]=='-'){
+              matriz[linha][5]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='F' || coluna=='f'){
         if(linha>0 && linha<10){
-            matriz[linha][6]=tokens;
-            return 1;
+            if(matriz[linha][6]=='-'){
+              matriz[linha][6]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='G' || coluna=='g'){
         if(linha>0 && linha<10){
-            matriz[linha][7]=tokens;
-            return 1;
+            if(matriz[linha][7]=='-'){
+              matriz[linha][7]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='H' || coluna=='h'){
         if(linha>0 && linha<10){
-            matriz[linha][8]=tokens;
-            return 1;
+            if(matriz[linha][8]=='-'){
+              matriz[linha][8]=tokens;
+              return 1;  
+            }
+            return 0; 
         }
     }
     else if(coluna=='I' || coluna=='i'){
         if(linha>0 && linha<10){
-            matriz[linha][9]=tokens;
-            return 1;
+            if(matriz[linha][9]=='-'){
+              matriz[linha][9]=tokens;
+              return 1;  
+            }
+            return 0; 
         }  
     }
     else{
