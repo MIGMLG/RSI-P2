@@ -52,8 +52,7 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
         for(j=0; j< TAMATRIZ; ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i+1][j] && matriz[i][j]==matriz[i+2][j]){
                  return 1;
-             }
-                 
+             }     
         }
     }
     
