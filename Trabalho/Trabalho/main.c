@@ -34,7 +34,7 @@ void printMatriz(char matriz[][TAMATRIZ]){
     
 }
 
-int checkjogadas(char matriz[][TAMATRIZ], char tokens[], int valorvalido){
+int checkjogadas(char matriz[][TAMATRIZ], char tokens[], char posicao[TAMPOS], int valorvalido){
     valorvalido=0;
     return valorvalido;
 }
@@ -52,7 +52,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         while(1){
             printf("Jogador 1 introduza as coordenadas: ");
             lerString(posicao, TAMPOS);
-            valorvalido=checkjogadas(matriz,tokens,valorvalido);
+            valorvalido=checkjogadas(matriz,tokens,posicao,valorvalido);
             if(valorvalido==0){
                 continue;
             }
@@ -69,7 +69,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
         while(1){
             printf("Jogador 2 introduza as coordenadas: ");
             lerString(posicao, TAMPOS);
-            valorvalido=checkjogadas(matriz,tokens,valorvalido);
+            valorvalido=checkjogadas(matriz,tokens,posicao,valorvalido);
             if(valorvalido==0){
                 continue;
             }
