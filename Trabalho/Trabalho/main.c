@@ -145,10 +145,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
     puts("");
     while(1){
         
-        //Para caso o jogador tenha Ganho o Jogo
-        if(fim>0){
-            break;
-        }
+        
         
         //Pede as coordenadas ao Jogador 1 e Verifica se é possivel fazer a jogada
         while(1){
@@ -172,6 +169,11 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
             
         }
+        //Para caso o jogador tenha Ganho o Jogo
+        if(fim>0){
+            break;
+        }
+        
         //Pede as coordenadas ao Jogador 2 e Verifica se é possivel fazer a jogada
         while(1){
             clean_buffer();
@@ -192,6 +194,10 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
             }
         }
         clean_buffer();
+        //Para caso o jogador tenha Ganho o Jogo
+        if(fim>0){
+            break;
+        }
         
     }
 }
