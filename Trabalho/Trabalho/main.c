@@ -38,6 +38,15 @@ void printMatriz(char matriz[][TAMATRIZ]){
 int vitoria(char matriz[][TAMATRIZ], char tokens){
     int i,j;
     
+    //verifica as linhas para ver se o jogador ganhou
+    for(i=0; i<TAMATRIZ ; ++i){
+        for(j=0; j< (TAMATRIZ - 3); ++j){
+             if(matriz[i][j]==tokens && matriz[i][j]==matriz[i][j+1] && matriz[i][j]==matriz[i][j+2]){
+                 return 1;
+             }
+        }
+    }
+    
     return 0;
 }
 
@@ -240,7 +249,7 @@ void jogadas(char matriz[][TAMATRIZ], char tokens[]){
                 printMatriz(matriz);
                 puts("");
                 jogadas2+=1;
-                fim1=vitoria(matriz,tokens[1]);
+                fim2=vitoria(matriz,tokens[1]);
                 break;
             }
         }
