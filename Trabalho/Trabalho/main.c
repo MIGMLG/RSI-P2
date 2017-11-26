@@ -332,6 +332,12 @@ void escolherTokens(char tokens[]){
     for(i=0; i<PECAS; ++i){
         printf("Jogador %d escolha o seu token: ", i+1);
         scanf("%c", &tokens[i]);
+        if(tokens[1]==tokens[0]){
+            i-=1;
+            puts("Os tokens tem de ser diferentes");
+            clean_buffer();
+            continue;
+        }
         clean_buffer();
     }
     puts("");
