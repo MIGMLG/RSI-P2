@@ -334,7 +334,7 @@ void escolherTokens(char tokens[]){
         scanf("%c", &tokens[i]);
         if(tokens[1]==tokens[0]){
             i-=1;
-            puts("Os tokens tem de ser diferentes");
+            puts("Os tokens tem de ser diferentes.");
             clean_buffer();
             continue;
         }
