@@ -38,7 +38,7 @@ void printMatriz(char matriz[][TAMATRIZ]){
 int vitoria(char matriz[][TAMATRIZ], char tokens){
     int i,j;
     
-    //verifica as linhas para ver se o jogador ganhou
+    //verifica as colunas para ver se o jogador ganhou
     for(i=0; i<TAMATRIZ ; ++i){
         for(j=0; j< (TAMATRIZ - 3); ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i][j+1] && matriz[i][j]==matriz[i][j+2]){
@@ -47,7 +47,7 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
         }
     }
     
-    //verifica as colunas para ver se o jogador ganhou
+   //verifica as linhas para ver se o jogador ganhou
     for(i=0; i<(TAMATRIZ - 3); ++i){
         for(j=0; j< TAMATRIZ; ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i+1][j] && matriz[i][j]==matriz[i+2][j]){
