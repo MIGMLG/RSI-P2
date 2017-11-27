@@ -43,6 +43,19 @@ void menor(int matriz[][COLUNAS]){
     printf("O Maior Valor: %d\n", valor);
 }
 
+void print(int matriz[][COLUNAS]){
+    int i, j;
+    
+    puts("Matriz: ");
+    for(i=0; i<LINHAS; ++i){
+        for(j=0; j<COLUNAS; ++j){
+            printf("%d", matriz[i][j]);
+        }
+        puts("");
+    }
+    
+}
+
 int main(int argc, char** argv) {
     int matriz[LINHAS][COLUNAS];
     int i, j;
@@ -56,6 +69,7 @@ int main(int argc, char** argv) {
     
     maior(matriz);
     menor(matriz);
+    print(matriz);
     
     return (EXIT_SUCCESS);
 }
