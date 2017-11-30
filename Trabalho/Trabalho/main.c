@@ -40,7 +40,7 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
     
     //verifica as colunas para ver se o jogador ganhou
     for(i=1; i<TAMATRIZ ; ++i){
-        for(j=1; j< (TAMATRIZ - 3); ++j){
+        for(j=1; j< (TAMATRIZ - 2); ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i][j+1] && matriz[i][j]==matriz[i][j+2]){
                  return 1;
              }
@@ -48,7 +48,7 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
     }
     
    //verifica as linhas para ver se o jogador ganhou
-    for(i=1; i<(TAMATRIZ - 3); ++i){
+    for(i=1; i<(TAMATRIZ - 2); ++i){
         for(j=1; j< TAMATRIZ; ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i+1][j] && matriz[i][j]==matriz[i+2][j]){
                  return 1;
@@ -57,8 +57,8 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
     }
     
     //verifica as diagonais da esquerda para a direita
-    for(i=1; i<(TAMATRIZ - 3); ++i){
-        for(j=1; j<(TAMATRIZ - 3); ++j){
+    for(i=1; i<(TAMATRIZ - 2); ++i){
+        for(j=1; j<(TAMATRIZ - 2); ++j){
              if(matriz[i][j]==tokens && matriz[i][j]==matriz[i+1][j+1] && matriz[i][j]==matriz[i+2][j+2]){
                  return 1;
              }  
@@ -66,9 +66,9 @@ int vitoria(char matriz[][TAMATRIZ], char tokens){
     }
     
     //verifica as diagonais da direita para a esquerda
-    for(i=1; i<(TAMATRIZ- 3); i++){
-        for(j=1; j<(TAMATRIZ - 3)/* nao e preciso procurar nas ultimas posicoes */; j++){
-             if(matriz[i][j+3]==tokens && matriz[i][j+3]==matriz[i+1][j+2] && matriz[i][j+3]==matriz[i+2][j+1]){
+    for(i=1; i<(TAMATRIZ- 2); i++){
+        for(j=1; j<(TAMATRIZ - 2)/* nao e preciso procurar nas ultimas posicoes */; j++){
+             if(matriz[i][j+2]==tokens && matriz[i][j+2]==matriz[i+1][j+1] && matriz[i][j+2]==matriz[i+2][j]){
                  return 1;
              }
                  
