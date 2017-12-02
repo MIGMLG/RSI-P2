@@ -144,9 +144,11 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     }
     
     //Posição para desistir
-    if(coluna=='Z' || coluna=='z' && linha==0){
-        printf("O jogador %d ganhou. Numero de Jogadas: %d", (abs(quemjoga-1)+1),jogadas[abs(quemjoga-1)]);
-        return quemjoga+2;
+    if(coluna=='Z' || coluna=='z'){
+        if(linha==0){
+            printf("O jogador %d ganhou. Numero de Jogadas: %d", (abs(quemjoga-1)+1),jogadas[abs(quemjoga-1)]);
+            return quemjoga+2;            
+        }
     }
     
     printf("Posição Inexistente.");
