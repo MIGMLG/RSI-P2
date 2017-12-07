@@ -93,8 +93,8 @@ int verificarVitoria(int matriz[][TAMATRIZ], int quemjoga){
     }
     
     //verifica as diagonais da direita para a esquerda
-    for(i=0; i<(TAMATRIZ- 2); i++){
-        for(j=0; j<(TAMATRIZ - 2)/* nao e preciso procurar nas ultimas posicoes */; j++){
+    for(i=0; i<(TAMATRIZ- 2); ++i){
+        for(j=0; j<(TAMATRIZ - 2); ++j){
              if(matriz[i][j+2]==quemjoga && matriz[i][j+2]==matriz[i+1][j+1] && matriz[i][j+2]==matriz[i+2][j]){
                  return 1;
              }
