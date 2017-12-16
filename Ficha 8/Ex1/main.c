@@ -7,16 +7,37 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utils.h"
 #define REG 30
+#define TAMANHO 50
 
 int Input(Aluno RegAluno[], int contador){
-    int numero;
+    Aluno novoAluno;
+    
+    //Adicionar Limite de 30
+    
+    puts(" ");
     
     printf("Introduza o numero do aluno: ");
-    scanf("%d", &numero);
-    RegAluno[contador].numero=numero;
+    scanf("%d", &novoAluno.numero);
+
+    //Bug
+    clean_buffer();
+
+    printf("Introduza o nome do aluno: ");
+    lerString(novoAluno.nome, TAMANHO);
     
+    printf("Introduza o dia de nascimento do aluno: ");
+    scanf("%d", &novoAluno.dia);
+    
+    printf("Introduza o Mes de nascimento (1-12) do aluno: ");
+    scanf("%d", &novoAluno.InputMes);
+    
+    printf("Introduza o ano de nascimento do aluno: ");
+    scanf("%d", &novoAluno.ano);
+    
+    RegAluno[contador]=novoAluno;
     return (++contador);
 }
 
@@ -27,9 +48,9 @@ int main(int argc, char** argv) {
     
     do{
         puts("Menu: ");
-        puts("1- Inserção de Dados");
-        puts("2- Alteração de Dados");
-        puts("3- Remoção de Dados");
+        puts("1- Insercao de Dados");
+        puts("2- Alteracao de Dados");
+        puts("3- Remocao de Dados");
         puts("4- Consulta de Dados");
         puts("5- Listagem de Dados");
         puts("6- Fechar o Programa");

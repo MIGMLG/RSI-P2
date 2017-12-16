@@ -22,8 +22,6 @@ typedef struct aluno Aluno;
 
 void clean_buffer();
 int lerString(char *string, int max);
-void countChar(char array[], char letra);
-int lastIndex(char letra, char array[], int fimarray);
 
 #endif	/* UTILS_H */
 
