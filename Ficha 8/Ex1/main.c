@@ -55,6 +55,10 @@ int Input(Aluno RegAluno[], int contador){
     Aluno novoAluno;
     
     //Adicionar Limite de 30
+    if( contador == REG){
+        printf("Lista Cheia");
+        return contador;
+    }
     
     puts(" ");
     
