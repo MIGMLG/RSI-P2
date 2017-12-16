@@ -12,6 +12,32 @@
 #define REG 30
 #define TAMANHO 50
 
+void imprimirAluno(Aluno RegAluno[], int contador) {
+    int i, valor, valido = 0;
+    
+    printf("Introduza o numero do aluno que procura: ");
+    scanf("%d", &valor);
+    
+    for(i = 0 ; i < contador; ++i) {
+        if (RegAluno[i].numero == valor){
+            valido = 1;
+            break;
+        }
+    }
+    if(valido==1){
+        puts("");
+        printf("Numero do Aluno: %d\n", RegAluno[i].numero);
+        printf("Nome do Aluno: %s\n", RegAluno[i].nome);
+        printf("Data de Nascimento do Aluno: %d-%d-%d\n", RegAluno[i].dia, RegAluno[i].InputMes ,RegAluno[i].ano);
+    }
+    else{
+        puts("");
+        printf("Valor Inexistente.");
+    }
+    
+    
+
+}
 
 void imprimirLista(Aluno RegAluno[], int contador) {
     int i;
@@ -80,12 +106,13 @@ int main(int argc, char** argv) {
                 printf("Opcao 3");
                 break;
             case 4:
-                printf("Opcao 4");
+                imprimirAluno(RegAluno, contador);
                 break;
             case 5:
                 imprimirLista(RegAluno, contador); 
                 break;
             case 6:
+                printf("GoodBye");
                 opcao=6;
                 break;
             default :
