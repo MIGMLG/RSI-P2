@@ -12,6 +12,19 @@
 #define REG 30
 #define TAMANHO 50
 
+
+void imprimirLista(Aluno RegAluno[], int contador) {
+    int i;
+    
+    for (i=0; i  < contador; ++i) {
+        puts("");
+        printf("Numero do Aluno: %d\n", RegAluno[i].numero);
+        printf("Nome do Aluno: %s\n", RegAluno[i].nome);
+        printf("Data de Nascimento do Aluno: %d-%d-%d\n", RegAluno[i].dia, RegAluno[i].InputMes ,RegAluno[i].ano);
+    }
+
+}
+
 int Input(Aluno RegAluno[], int contador){
     Aluno novoAluno;
     
@@ -37,14 +50,14 @@ int Input(Aluno RegAluno[], int contador){
     printf("Introduza o ano de nascimento do aluno: ");
     scanf("%d", &novoAluno.ano);
     
-    RegAluno[contador]=novoAluno;
+    RegAluno[contador] = novoAluno;
     return (++contador);
 }
 
 int main(int argc, char** argv) {
     int opcao;
     Aluno RegAluno[REG];
-    int contador=0;
+    int contador = 0;
     
     do{
         puts("Menu: ");
@@ -70,7 +83,7 @@ int main(int argc, char** argv) {
                 printf("Opcao 4");
                 break;
             case 5:
-                printf("Opcao 5");
+                imprimirLista(RegAluno, contador); 
                 break;
             case 6:
                 opcao=6;
@@ -79,7 +92,7 @@ int main(int argc, char** argv) {
                 printf("Opcao Invalida");
         }
         puts(" ");
-    }while(opcao!=6);
+    }while(opcao != 6);
 
     return (EXIT_SUCCESS);
 }
