@@ -9,11 +9,20 @@
 #include <stdlib.h>
 
 //MEDIA
+void Media(int tamanho, int valores []){
+    int i, soma = 0;
+    
+    for( i = 0; i < tamanho; ++i){
+        soma = soma + valores[i];
+    }
+    
+    printf("Media: %.2lf", (float)soma/tamanho);
+}
 
 void Input(int tamanho, int valores []){
     int i;
     
-    for( i = 0; i<tamanho; ++i){
+    for( i = 0; i < tamanho; ++i){
         printf("Introduza o Valor %d: ", i+1);
         scanf("%d", &valores[i]);
     }
@@ -29,6 +38,7 @@ int main(int argc, char** argv) {
     valores = (int *) malloc(tamanho * sizeof(int *));
    
     Input(tamanho, valores);
+    Media(tamanho, valores);
     
     puts("");
     return (EXIT_SUCCESS);
