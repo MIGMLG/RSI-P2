@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
     printf("Introduza a quantidade de valores que deseja introduzir: ");
     scanf("%d", &tamanho);
     
-    valores = (int *) malloc(tamanho * sizeof(int *));
+    valores = (int *) malloc(tamanho * sizeof(int));
    
     Input(tamanho, valores);
     Media(tamanho, valores);

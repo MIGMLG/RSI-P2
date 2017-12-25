@@ -11,7 +11,7 @@
 
 int main(int argc, char** argv) {
     int *valores = NULL;
-    valores = (int *) malloc(TAMANHO * sizeof(int *));
+    valores = (int *) malloc(TAMANHO * sizeof(int));
     
     printf("Introduza o primeiro valor a somar: ");
     scanf("%d", &valores[0]);

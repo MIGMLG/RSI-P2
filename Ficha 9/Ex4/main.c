@@ -136,14 +136,22 @@ void imprimirLista(Aluno RegAluno[], int contador) {
 
 int Input(Aluno RegAluno[], int contador, int *tamanho){
     Aluno novoAluno;
+    Aluno *b = NULL;
+    
+    puts(" ");
     
     //Adicionar Limite de 30
     if( contador == *tamanho){
-        printf("Lista Cheia");
+        printf("Lista Cheia. Foram adiconados mais 10 vagas.");
+        b = (Aluno *) realloc(RegAluno, 10 );
+        *tamanho = *tamanho + 10;
+        free(RegAluno);
+        RegAluno = b;
+        puts(" ");
         return contador;
     }
     
-    puts(" ");
+    
     
     printf("Introduza o numero do aluno: ");
     scanf("%d", &novoAluno.numero);
@@ -175,7 +183,7 @@ int main(int argc, char** argv) {
     printf("Introduza a quantidade de alunos que deseja introduzir: ");
     scanf("%d", &tamanho);
     
-    RegAluno = (Aluno *) malloc(tamanho * sizeof(Aluno *));
+    RegAluno = (Aluno *) malloc(tamanho * sizeof(Aluno));
     
     do{
         puts("Menu: ");
