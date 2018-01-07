@@ -134,27 +134,30 @@ void imprimirLista(Aluno RegAluno[], int contador) {
 
 }
 
+
 int Input(Aluno RegAluno[], int contador, int *tamanho){
     Aluno novoAluno;
     Aluno *b = NULL;
     
     puts(" ");
     
-    //Adicionar Limite de 30
+    //Adiciona vagas quando estiver cheio
     if( contador == *tamanho){
         printf("Lista Cheia. Foram adiconados mais 10 vagas.");
         b = (Aluno *) realloc(RegAluno, 10 );
         *tamanho = *tamanho + 10;
         free(RegAluno);
         RegAluno = b;
-        puts(" ");
-        return contador;
     }
     
-    
-    
+    puts(" ");
+
     printf("Introduza o numero do aluno: ");
     scanf("%d", &novoAluno.numero);
+    
+    if(novoAluno.numero==-1){
+        return contador;
+    }
 
     //Bug
     clean_buffer();
@@ -175,16 +178,31 @@ int Input(Aluno RegAluno[], int contador, int *tamanho){
     return (++contador);
 }
 
+//Ler infromaçoes do Ficheiro
 void LerFicheiro(Aluno RegAluno[], int contador, int *tamanho){
     int i=0;
+    Aluno *b = NULL;
+    
+    
+    
+    //Adiciona vagas quando estiver cheio
+    if( contador == *tamanho){
+        puts(" ");
+        printf("Lista Cheia. Foram adiconados mais 10 vagas.");
+        b = (Aluno *) realloc(RegAluno, 10 );
+        *tamanho = *tamanho + 10;
+        free(RegAluno);
+        RegAluno = b;
+        puts(" ");
+    }
+    
+    
+    
     FILE *ficheiro = fopen("BD.dat", "rb");
     
-    //implementar contador em ficheiro texto
-    do{
+    for(i = 0; i < contador; ++i) {
         fread(&RegAluno[i], sizeof(Aluno), 1, ficheiro);
-        ++i;
-    }while(1);
-    
+    }
     fclose(ficheiro);
     
     puts(" ");
@@ -192,8 +210,18 @@ void LerFicheiro(Aluno RegAluno[], int contador, int *tamanho){
     puts(" ");
 }
 
+//Guardar Contador
+void guardarContador(int contador){
+    
+    FILE *contadorFicheiro = fopen("contador.dat", "wb");
+    fwrite(&contador, sizeof(int), 1, contadorFicheiro);
+    fclose(contadorFicheiro);
+    printf("Done!");
+    puts(" ");
+}
 
-void guardarFicheiro(Aluno RegAluno[], int contador, int *tamanho){
+//guardar informações no ficheiro
+void guardarFicheiro(Aluno RegAluno[], int contador){
     int i;
     FILE *ficheiro = fopen("BD.dat", "wb");
     
@@ -218,6 +246,17 @@ int main(int argc, char** argv) {
     
     RegAluno = (Aluno *) malloc(tamanho * sizeof(Aluno));
     
+    //Ler Contador
+    FILE *contadorFicheiro = fopen("contador.dat", "rb");
+    if(contadorFicheiro != NULL){
+       fread(&contador, sizeof(int), 1, contadorFicheiro); 
+    }
+    fclose(contadorFicheiro);
+    
+    if(contador > 0){
+        LerFicheiro(RegAluno,contador,&tamanho);
+    }
+    
     do{
         puts("Menu: ");
         puts("1- Insercao de Dados");
@@ -225,19 +264,24 @@ int main(int argc, char** argv) {
         puts("3- Remocao de Dados");
         puts("4- Consulta de Dados");
         puts("5- Listagem de Dados");
-        puts("6- Guardar Dados num Ficheiro de Texto");
-        puts("7- Fechar o Programa");
+        puts("6- Fechar o Programa");
         printf("Escolha uma das opcoes: ");
         scanf("%d", &opcao);
         switch(opcao){
             case 1:
                 contador=Input(RegAluno, contador, &tamanho);
+                guardarFicheiro(RegAluno,contador);
+                guardarContador(contador);
                 break;
             case 2:
                 alterarAluno(RegAluno, contador);
+                guardarFicheiro(RegAluno,contador);
+                guardarContador(contador);
                 break;
             case 3:
                 contador=eliminarAluno(RegAluno,contador);
+                guardarFicheiro(RegAluno,contador);
+                guardarContador(contador);
                 break;
             case 4:
                 imprimirAluno(RegAluno, contador);
@@ -246,17 +290,14 @@ int main(int argc, char** argv) {
                 imprimirLista(RegAluno, contador); 
                 break;
             case 6:
-                guardarFicheiro(RegAluno,contador,&tamanho);
-                break;
-            case 7:
                 printf("GoodBye");
-                opcao=7;
+                opcao=6;
                 break;
             default :
                 printf("Opcao Invalida");
         }
         puts(" ");
-    }while(opcao != 7);
+    }while(opcao != 6);
 
     return (EXIT_SUCCESS);
 }
