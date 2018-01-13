@@ -62,19 +62,24 @@ void imprimirLista(Jogadores RegJogadoresTotais[], int *contador) {
 void guardarFicheiro(Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], int *contador,int *jogadoresIguais){
     int i, pesquisa = -1, posicaonova, contadorAntigo = 0;
     
+    //Ler Contador antes do novo jogo
     FILE *contadorFicheiro = fopen("contador.dat", "rb");
     if(contadorFicheiro != NULL){
        fread(&contadorAntigo, sizeof(int), 1, contadorFicheiro); 
     }
     fclose(contadorFicheiro);
      
+    //adicionar jogos aos players
     for(i = 0; i < 2; ++i) {
         RegJogadores[i].jogos = RegJogadores[i].jogos + 1;
     }
     
+    //se existirem jogadores com o mesmo nome alterar os valores de vitorias e jogos
     if( *jogadoresIguais > 0){
+        //Carrega BD
         RegJogadoresTotais= (Jogadores *) malloc((contadorAntigo) * sizeof(Jogadores));
         lerFicheiro(RegJogadoresTotais,(contadorAntigo));
+        //procura as posições em que os jogadores tem o mesmo nome e guarda os seus dados
         for(i = 0; i < 2; ++i){
             pesquisa=pesquisaJogador(RegJogadores,RegJogadoresTotais,&contadorAntigo,i);
             if(pesquisa!=-1){
@@ -87,13 +92,14 @@ void guardarFicheiro(Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], i
                 posicaonova = i;
             }
         }
-
+        //guarda os jogadores ja existentes
         FILE *ficheiro = fopen("BD.dat", "wb");
         for(i = 0; i < (contadorAntigo); ++i) {
             fwrite(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
         }
         fclose(ficheiro);
         
+        //guarda o novo jogador
         if(*jogadoresIguais == 1){
            FILE *ficheiro1 = fopen("BD.dat", "ab");
             fwrite(&RegJogadores[posicaonova], sizeof(Jogadores), 1, ficheiro1);
@@ -111,15 +117,7 @@ void guardarFicheiro(Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], i
         fclose(ficheiro2);
     }
     
-    
-    
-    
-    puts(" ");
-    printf("Done!");
-    puts(" ");
 }
-
-
 
 //Função para guardar o contador dos jogadores
 void guardarContador(int contador){
