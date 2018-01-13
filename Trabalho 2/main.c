@@ -195,13 +195,13 @@ void criarMatriz(int matriz[][TAMATRIZ]){
     
 }
 */
-/*
-void escolherTokens(char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
+
+void escolherTokens(char tokens[], Jogadores RegJogadores[]){
     int i;
     
     //Premite a escolha dos tokens e guarda no array de chars
     for(i=0; i<PECAS; ++i){
-        printf("%s escolha o seu token: ", i==0 ? nome1 : nome2 );
+        printf("%s escolha o seu token: ", RegJogadores[i].jogador);
         scanf("%c", &tokens[i]);
         if(tokens[1]==tokens[0]){
             puts("Os tokens tem de ser diferentes.");
@@ -213,7 +213,7 @@ void escolherTokens(char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
     }
     puts("");
     
-}*/
+}
 
 void nomes(int numJogadores, Jogadores RegJogadores[]){
     int i;
@@ -255,7 +255,7 @@ int main(int argc, char** argv) {
             case 1:
                 RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
                 nomes(PECAS,RegJogadores);
-                //escolherTokens(tokens, nome1, nome2);
+                escolherTokens(tokens, RegJogadores);
                 //criarMatriz(matriz);
                 //printMatriz(matriz,tokens);
                 //jogadas(matriz,tokens, nome1, nome2);
