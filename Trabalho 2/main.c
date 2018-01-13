@@ -228,10 +228,7 @@ int main(int argc, char** argv) {
     int matriz[TAMATRIZ][TAMATRIZ];
     char nome1[TAMANHO]; 
     char nome2[TAMANHO];
-    Jogo *RegJogos = NULL;
     contador = 0;
-    
-    RegJogos = (Jogo *) malloc(TAMANHO * sizeof(Jogo));
     
     //Ler Contador
     FILE *contadorFicheiro = fopen("contador.dat", "rb");

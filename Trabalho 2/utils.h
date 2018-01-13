@@ -8,14 +8,11 @@
 #ifndef UTILS_H
 #define	UTILS_H
 
-struct jogo{
-    int jogo;
-    char jogador1[50];
-    char jogador2[50];
-    int vitorias1;
-    int vitorias2;
+struct jogadores{
+    char jogador[50];
+    int vitorias;
 };
-typedef struct jogo Jogo;
+typedef struct jogadores Jogadores;
 
 void clean_buffer();
 int lerString(char *string, int max);
