@@ -22,7 +22,7 @@ void guardarContador(){
     printf("Done!");
     puts(" ");
 }
-
+/*
 void printMatriz(int matriz[][TAMATRIZ],char tokens[]){
     int i,j;
     int abc =65;
@@ -61,7 +61,8 @@ void printMatriz(int matriz[][TAMATRIZ],char tokens[]){
     }
     
 }
-
+*/
+/*
 int verificarVitoria(int matriz[][TAMATRIZ], int quemjoga){
     int i,j;
     int numTokens;
@@ -105,7 +106,8 @@ int verificarVitoria(int matriz[][TAMATRIZ], int quemjoga){
     
     return 0;
 }
-
+*/
+/*
 int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int linha, int quemjoga, int jogadas[], char nome1[TAMANHO], char nome2[TAMANHO]){
     int i,j;
     int abc = 65;
@@ -156,7 +158,8 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     printf("PosiÃ§Ã£o Inexistente.");
     return quemjoga;
 }
-
+*/
+/*
 void jogadas(int matriz[][TAMATRIZ], char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
     char coluna;
     int linha;
@@ -178,7 +181,8 @@ void jogadas(int matriz[][TAMATRIZ], char tokens[], char nome1[TAMANHO], char no
     
 
 }
-
+*/
+/*
 void criarMatriz(int matriz[][TAMATRIZ]){
     int i, j;
 
@@ -190,7 +194,8 @@ void criarMatriz(int matriz[][TAMATRIZ]){
     }
     
 }
-
+*/
+/*
 void escolherTokens(char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
     int i;
     
@@ -208,17 +213,16 @@ void escolherTokens(char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
     }
     puts("");
     
-}
+}*/
 
-void nomes(char nome1[TAMANHO], char nome2[TAMANHO]){
+void nomes(int numJogadores, Jogadores RegJogadores[]){
+    int i;
     
     clean_buffer();
-    printf("Nome do Jogador 1: ");
-    lerString(nome1, TAMANHO);
-    printf("Nome do Jogador 2: ");
-    lerString(nome2, TAMANHO);
-    
-    
+    for(i = 0; i < numJogadores; ++i){
+        printf("Nome do Jogador %d: ", i+1);
+        lerString(RegJogadores[i].jogador, TAMANHO);
+    }
     
 }
 
@@ -226,8 +230,7 @@ int main(int argc, char** argv) {
     int opcao;
     char tokens[PECAS];
     int matriz[TAMATRIZ][TAMATRIZ];
-    char nome1[TAMANHO]; 
-    char nome2[TAMANHO];
+    Jogadores *RegJogadores = NULL;
     contador = 0;
     
     //Ler Contador
@@ -250,13 +253,14 @@ int main(int argc, char** argv) {
         scanf("%d", &opcao);
         switch(opcao){
             case 1:
-                nomes(nome1, nome2);
-                escolherTokens(tokens, nome1, nome2);
-                criarMatriz(matriz);
-                printMatriz(matriz,tokens);
-                jogadas(matriz,tokens, nome1, nome2);
+                RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
+                nomes(PECAS,RegJogadores);
+                //escolherTokens(tokens, nome1, nome2);
+                //criarMatriz(matriz);
+                //printMatriz(matriz,tokens);
+                //jogadas(matriz,tokens, nome1, nome2);
                 puts(" ");
-                ++contador;
+                //++contador;
                 guardarContador();
                 break;
             case 2:
