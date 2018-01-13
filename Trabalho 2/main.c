@@ -14,20 +14,51 @@
 #define VALORINCIAL -1
 #define TAMANHO 25
 
+void imprimirLista(Jogadores RegJogadoresTotais[], int *contador) {
+    int i;
+    puts("");
+    printf("Nome      |");
+    printf("Jogos     |");
+    printf("Pontos    |");
+    puts("");
+    for (i=0; i  < *contador; ++i) {
+        printf("%-10s|", RegJogadoresTotais[i].jogador);
+        printf("%-10d|", RegJogadoresTotais[i].jogos);
+        printf("%-10d|", RegJogadoresTotais[i].pontos);
+        puts("");
+    }
+}
+
+//guardar informações no ficheiro
+void guardarFicheiro(Jogadores RegJogadores[], int *contador){
+    int i;
+    
+    for(i = 0; i < *contador; ++i) {
+        RegJogadores[i].jogos = RegJogadores[i].jogos + 1;
+    }
+    
+    FILE *ficheiro = fopen("BD.dat", "ab");
+
+    for(i = 0; i < *contador; ++i) {
+        fwrite(&RegJogadores[i], sizeof(Jogadores), 1, ficheiro);
+    }
+
+    fclose(ficheiro);
+    puts(" ");
+    printf("Done!");
+    puts(" ");
+}
 
 //Ler infromaçoes do Ficheiro
-void LerFicheiro(Jogadores RegJogadoresTotais[], int contador){
+void LerFicheiro(Jogadores RegJogadoresTotais[], int *contador){
     int i=0;
 
     FILE *ficheiro = fopen("BD.dat", "rb");
-    for(i = 0; i < (2*contador); ++i) {
+    for(i = 0; i < *contador; ++i) {
         fread(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
     }
     fclose(ficheiro);
 
-    puts(" ");
-    printf("Done!");
-    puts(" ");
 }
 
 
@@ -150,6 +181,8 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
                 if(vitoria>0){
                     puts("");
                     printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? RegJogadores[0].jogador : RegJogadores[1].jogador,jogadas[quemjoga]);
+                    //guardar vitoria
+                    RegJogadores[quemjoga].pontos = RegJogadores[quemjoga].pontos + 3;
                     return quemjoga+2;
                 }
                 //Se ninguem ganhou continua o jogo
@@ -166,7 +199,10 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     //PosiÃ§Ã£o para desistir
     if(coluna=='Z' || coluna=='z'){
         if(linha==0){
+            //Contador para as jogadas realizadas
+            jogadas[quemjoga]+=1;
             printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? RegJogadores[1].jogador : RegJogadores[0].jogador ,jogadas[abs(quemjoga-1)]);
+            RegJogadores[abs(quemjoga-1)].pontos = RegJogadores[abs(quemjoga-1)].pontos + 3;
             return quemjoga+2;            
         }
     }
@@ -231,13 +267,16 @@ void escolherTokens(char tokens[], Jogadores RegJogadores[]){
     
 }
 
-void nomes(int numJogadores, Jogadores RegJogadores[]){
+void nomes(int numJogadores, Jogadores RegJogadores[], int *contador){
     int i;
     
     clean_buffer();
     for(i = 0; i < numJogadores; ++i){
         printf("Nome do Jogador %d: ", i+1);
         lerString(RegJogadores[i].jogador, TAMANHO);
+        RegJogadores[i].pontos = 0;
+        RegJogadores[i].jogos = 0;
+        ++*contador;
     }
     
 }
@@ -250,24 +289,17 @@ int main(int argc, char** argv) {
     Jogadores *RegJogadoresTotais = NULL;
     int contador = 0;
     
-    //Ler Contador
+    //Ler Contador de jogadores existentes
     FILE *contadorFicheiro = fopen("contador.dat", "rb");
     if(contadorFicheiro != NULL){
        fread(&contador, sizeof(int), 1, contadorFicheiro); 
     }
     fclose(contadorFicheiro);
-
     
     
     do{
         printf("Contador : %d", contador);
         puts("");
-        //Ler Base de Dados dos Jogadores
-        if(contador > 0){
-            RegJogadoresTotais= (Jogadores *) malloc((contador * PECAS) * sizeof(Jogadores));
-            //LerFicheiro(RegJogadoresTotais,contador);
-        }
-        
         puts("Menu: ");
         puts("1- Jogador VS Jogador");
         puts("2- Jogador VS Computador");
@@ -278,20 +310,28 @@ int main(int argc, char** argv) {
         switch(opcao){
             case 1:
                 RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
-                nomes(PECAS,RegJogadores);
+                nomes(PECAS,RegJogadores,&contador);
                 escolherTokens(tokens, RegJogadores);
                 criarMatriz(matriz);
                 printMatriz(matriz,tokens);
                 jogadas(matriz,tokens, RegJogadores);
+                guardarFicheiro(RegJogadores,&contador);
                 puts(" ");
-                ++contador;
                 guardarContador(contador);
                 break;
             case 2:
                 printf("WIP");
                 break;
             case 3:
-                printf("WIP");
+                if( contador == 0){
+                    printf("Nenhum Jogo ainda realizado.");
+                    break;
+                }
+                RegJogadoresTotais= (Jogadores *) malloc(contador * sizeof(Jogadores));
+                LerFicheiro(RegJogadoresTotais,&contador);
+                imprimirLista(RegJogadoresTotais, &contador);
+                free(RegJogadoresTotais);
+                RegJogadoresTotais = NULL;
                 break;
             case 4:
                 printf("GoodBye");
