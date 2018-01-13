@@ -7,12 +7,40 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utils.h"
 #define TAMPOS 2
 #define TAMATRIZ 9
 #define PECAS 2
 #define VALORINCIAL -1
 #define TAMANHO 25
+
+
+//Ler informaçoes do Ficheiro
+void lerFicheiro(Jogadores RegJogadoresTotais[], int contador){
+    int i=0;
+
+    FILE *ficheiro = fopen("BD.dat", "rb");
+    for(i = 0; i < contador; ++i) {
+        fread(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
+    }
+    fclose(ficheiro);
+    free(ficheiro);
+
+}
+
+//Pesuisa Jogadores
+int pesquisaJogador(Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], int *contador, int posicao){
+    int i;
+   
+    for(i = 0 ; i < *contador; ++i) {
+        if (strcmp(RegJogadoresTotais[i].jogador, RegJogadores[posicao].jogador) == 0){
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 //Imprimir Tabela
 void imprimirLista(Jogadores RegJogadoresTotais[], int *contador) {
@@ -31,36 +59,67 @@ void imprimirLista(Jogadores RegJogadoresTotais[], int *contador) {
 }
 
 //guardar informações no ficheiro
-void guardarFicheiro(Jogadores RegJogadores[], int *contador){
-    int i;
+void guardarFicheiro(Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], int *contador,int *jogadoresIguais){
+    int i, pesquisa = -1, posicaonova, contadorAntigo = 0;
     
-    for(i = 0; i < *contador; ++i) {
+    FILE *contadorFicheiro = fopen("contador.dat", "rb");
+    if(contadorFicheiro != NULL){
+       fread(&contadorAntigo, sizeof(int), 1, contadorFicheiro); 
+    }
+    fclose(contadorFicheiro);
+     
+    for(i = 0; i < 2; ++i) {
         RegJogadores[i].jogos = RegJogadores[i].jogos + 1;
     }
     
-    FILE *ficheiro = fopen("BD.dat", "ab");
+    if( *jogadoresIguais > 0){
+        RegJogadoresTotais= (Jogadores *) malloc((contadorAntigo) * sizeof(Jogadores));
+        lerFicheiro(RegJogadoresTotais,(contadorAntigo));
+        for(i = 0; i < 2; ++i){
+            pesquisa=pesquisaJogador(RegJogadores,RegJogadoresTotais,&contadorAntigo,i);
+            if(pesquisa!=-1){
+                RegJogadoresTotais[pesquisa].jogos = RegJogadoresTotais[pesquisa].jogos + RegJogadores[i].jogos;
+                RegJogadoresTotais[pesquisa].pontos = RegJogadoresTotais[pesquisa].pontos + RegJogadores[i].pontos;
+                pesquisa = -1;
+                continue;
+            }
+            if(*jogadoresIguais==1){
+                posicaonova = i;
+            }
+        }
 
-    for(i = 0; i < *contador; ++i) {
-        fwrite(&RegJogadores[i], sizeof(Jogadores), 1, ficheiro);
+        FILE *ficheiro = fopen("BD.dat", "wb");
+        for(i = 0; i < (contadorAntigo); ++i) {
+            fwrite(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
+        }
+        fclose(ficheiro);
+        
+        if(*jogadoresIguais == 1){
+           FILE *ficheiro1 = fopen("BD.dat", "ab");
+            fwrite(&RegJogadores[posicaonova], sizeof(Jogadores), 1, ficheiro1);
+            fclose(ficheiro1); 
+        }
+       
+        free(RegJogadoresTotais);
+        RegJogadoresTotais = NULL;
     }
-
-    fclose(ficheiro);
+    else{
+        FILE *ficheiro2 = fopen("BD.dat", "ab");
+        for(i = 0; i < 2; ++i) {
+            fwrite(&RegJogadores[i], sizeof(Jogadores), 1, ficheiro2);
+        }
+        fclose(ficheiro2);
+    }
+    
+    
+    
+    
     puts(" ");
     printf("Done!");
     puts(" ");
 }
 
-//Ler informaçoes do Ficheiro
-void LerFicheiro(Jogadores RegJogadoresTotais[], int *contador){
-    int i=0;
 
-    FILE *ficheiro = fopen("BD.dat", "rb");
-    for(i = 0; i < *contador; ++i) {
-        fread(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
-    }
-    fclose(ficheiro);
-
-}
 
 //Função para guardar o contador dos jogadores
 void guardarContador(int contador){
@@ -276,8 +335,8 @@ void escolherTokens(char tokens[], Jogadores RegJogadores[]){
 }
 
 //função de dar nomes ao jogadores
-void nomes(int numJogadores, Jogadores RegJogadores[], int *contador){
-    int i;
+void nomes(int numJogadores, Jogadores RegJogadores[], Jogadores RegJogadoresTotais[], int *contador, int *jogadoresIguais){
+    int i, pesquisa = -1;
     
     clean_buffer();
     for(i = 0; i < numJogadores; ++i){
@@ -285,9 +344,25 @@ void nomes(int numJogadores, Jogadores RegJogadores[], int *contador){
         lerString(RegJogadores[i].jogador, TAMANHO);
         RegJogadores[i].pontos = 0;
         RegJogadores[i].jogos = 0;
-        ++*contador;
-    }
-    
+        //Verificar se o jogador já existe
+        if(*contador > 1){
+            RegJogadoresTotais= (Jogadores *) malloc(*contador * sizeof(Jogadores));
+            lerFicheiro(RegJogadoresTotais,*contador);
+            pesquisa=pesquisaJogador(RegJogadores,RegJogadoresTotais,contador,i);
+            free(RegJogadoresTotais);
+            RegJogadoresTotais = NULL;
+            if(pesquisa!=-1){
+                pesquisa=-1;
+                ++*jogadoresIguais;
+                continue;
+            }
+            ++*contador; 
+        }
+        else{
+            ++*contador;  
+        }
+        
+    } 
 }
 
 int main(int argc, char** argv) {
@@ -297,6 +372,7 @@ int main(int argc, char** argv) {
     Jogadores *RegJogadores = NULL;
     Jogadores *RegJogadoresTotais = NULL;
     int contador = 0;
+    int jogadoresIguais = 0;
     
     //Ler Contador de jogadores existentes
     FILE *contadorFicheiro = fopen("contador.dat", "rb");
@@ -319,14 +395,15 @@ int main(int argc, char** argv) {
         switch(opcao){
             case 1:
                 RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
-                nomes(PECAS,RegJogadores,&contador);
+                nomes(PECAS,RegJogadores,RegJogadoresTotais,&contador,&jogadoresIguais);
                 escolherTokens(tokens, RegJogadores);
                 criarMatriz(matriz);
                 printMatriz(matriz,tokens);
                 jogadas(matriz,tokens, RegJogadores);
-                guardarFicheiro(RegJogadores,&contador);
+                guardarFicheiro(RegJogadores,RegJogadoresTotais,&contador,&jogadoresIguais);
                 puts(" ");
                 guardarContador(contador);
+                jogadoresIguais = 0;
                 break;
             case 2:
                 printf("WIP");
@@ -337,7 +414,7 @@ int main(int argc, char** argv) {
                     break;
                 }
                 RegJogadoresTotais= (Jogadores *) malloc(contador * sizeof(Jogadores));
-                LerFicheiro(RegJogadoresTotais,&contador);
+                lerFicheiro(RegJogadoresTotais, contador);
                 imprimirLista(RegJogadoresTotais, &contador);
                 free(RegJogadoresTotais);
                 RegJogadoresTotais = NULL;
