@@ -22,7 +22,7 @@ void guardarContador(){
     printf("Done!");
     puts(" ");
 }
-/*
+
 void printMatriz(int matriz[][TAMATRIZ],char tokens[]){
     int i,j;
     int abc =65;
@@ -61,8 +61,8 @@ void printMatriz(int matriz[][TAMATRIZ],char tokens[]){
     }
     
 }
-*/
-/*
+
+
 int verificarVitoria(int matriz[][TAMATRIZ], int quemjoga){
     int i,j;
     int numTokens;
@@ -106,9 +106,9 @@ int verificarVitoria(int matriz[][TAMATRIZ], int quemjoga){
     
     return 0;
 }
-*/
-/*
-int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int linha, int quemjoga, int jogadas[], char nome1[TAMANHO], char nome2[TAMANHO]){
+
+
+int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int linha, int quemjoga, int jogadas[], Jogadores RegJogadores[]){
     int i,j;
     int abc = 65;
     int vitoria = 0;
@@ -133,7 +133,7 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
                 vitoria=verificarVitoria(matriz,quemjoga);
                 if(vitoria>0){
                     puts("");
-                    printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? nome1 : nome2,jogadas[quemjoga]);
+                    printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? RegJogadores[0].jogador : RegJogadores[1].jogador,jogadas[quemjoga]);
                     return quemjoga+2;
                 }
                 //Se ninguem ganhou continua o jogo
@@ -150,7 +150,7 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     //PosiÃ§Ã£o para desistir
     if(coluna=='Z' || coluna=='z'){
         if(linha==0){
-            printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? nome2 : nome1 ,jogadas[abs(quemjoga-1)]);
+            printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? RegJogadores[1].jogador : RegJogadores[0].jogador ,jogadas[abs(quemjoga-1)]);
             return quemjoga+2;            
         }
     }
@@ -158,9 +158,9 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     printf("PosiÃ§Ã£o Inexistente.");
     return quemjoga;
 }
-*/
-/*
-void jogadas(int matriz[][TAMATRIZ], char tokens[], char nome1[TAMANHO], char nome2[TAMANHO]){
+
+
+void jogadas(int matriz[][TAMATRIZ], char tokens[], Jogadores RegJogadores[]){
     char coluna;
     int linha;
     int quemjoga=0;
@@ -169,20 +169,20 @@ void jogadas(int matriz[][TAMATRIZ], char tokens[], char nome1[TAMANHO], char no
     //Input para Jogadas
     do{
         puts("");
-        printf("%s introduza a coluna: ", quemjoga==0 ? nome1 : nome2);
+        printf("%s introduza a coluna: ", quemjoga==0 ? RegJogadores[0].jogador : RegJogadores[1].jogador);
         scanf("%c", &coluna);
         clean_buffer();
-        printf("%s introduza a linha: ", quemjoga==0 ? nome1 : nome2);
+        printf("%s introduza a linha: ", quemjoga==0 ? RegJogadores[0].jogador : RegJogadores[1].jogador);
         scanf("%d", &linha);
         //Verifica as jogadas e troca para o jogador seguinte
-        quemjoga=verificasJogadas(matriz,tokens,coluna,linha,quemjoga,jogadas,nome1,nome2);
+        quemjoga=verificasJogadas(matriz,tokens,coluna,linha,quemjoga,jogadas,RegJogadores);
         clean_buffer();
     }while(quemjoga<2);
     
 
 }
-*/
-/*
+
+
 void criarMatriz(int matriz[][TAMATRIZ]){
     int i, j;
 
@@ -194,7 +194,7 @@ void criarMatriz(int matriz[][TAMATRIZ]){
     }
     
 }
-*/
+
 
 void escolherTokens(char tokens[], Jogadores RegJogadores[]){
     int i;
@@ -256,11 +256,11 @@ int main(int argc, char** argv) {
                 RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
                 nomes(PECAS,RegJogadores);
                 escolherTokens(tokens, RegJogadores);
-                //criarMatriz(matriz);
-                //printMatriz(matriz,tokens);
-                //jogadas(matriz,tokens, nome1, nome2);
+                criarMatriz(matriz);
+                printMatriz(matriz,tokens);
+                jogadas(matriz,tokens, RegJogadores);
                 puts(" ");
-                //++contador;
+                ++contador;
                 guardarContador();
                 break;
             case 2:
