@@ -13,9 +13,25 @@
 #define PECAS 2
 #define VALORINCIAL -1
 #define TAMANHO 25
-int contador;
 
-void guardarContador(){
+
+//Ler infromaçoes do Ficheiro
+void LerFicheiro(Jogadores RegJogadoresTotais[], int contador){
+    int i=0;
+
+    FILE *ficheiro = fopen("BD.dat", "rb");
+    for(i = 0; i < (2*contador); ++i) {
+        fread(&RegJogadoresTotais[i], sizeof(Jogadores), 1, ficheiro);
+    }
+    fclose(ficheiro);
+
+    puts(" ");
+    printf("Done!");
+    puts(" ");
+}
+
+
+void guardarContador(int contador){
     FILE *contadorFicheiro = fopen("contador.dat", "wb");
     fwrite(&contador, sizeof(int), 1, contadorFicheiro);
     fclose(contadorFicheiro);
@@ -231,7 +247,8 @@ int main(int argc, char** argv) {
     char tokens[PECAS];
     int matriz[TAMATRIZ][TAMATRIZ];
     Jogadores *RegJogadores = NULL;
-    contador = 0;
+    Jogadores *RegJogadoresTotais = NULL;
+    int contador = 0;
     
     //Ler Contador
     FILE *contadorFicheiro = fopen("contador.dat", "rb");
@@ -239,11 +256,18 @@ int main(int argc, char** argv) {
        fread(&contador, sizeof(int), 1, contadorFicheiro); 
     }
     fclose(contadorFicheiro);
+
     
-    printf("Contador : %d", contador);
-    puts("");
     
     do{
+        printf("Contador : %d", contador);
+        puts("");
+        //Ler Base de Dados dos Jogadores
+        if(contador > 0){
+            RegJogadoresTotais= (Jogadores *) malloc((contador * PECAS) * sizeof(Jogadores));
+            //LerFicheiro(RegJogadoresTotais,contador);
+        }
+        
         puts("Menu: ");
         puts("1- Jogador VS Jogador");
         puts("2- Jogador VS Computador");
@@ -261,7 +285,7 @@ int main(int argc, char** argv) {
                 jogadas(matriz,tokens, RegJogadores);
                 puts(" ");
                 ++contador;
-                guardarContador();
+                guardarContador(contador);
                 break;
             case 2:
                 printf("WIP");
