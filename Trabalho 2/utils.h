@@ -11,6 +11,7 @@
 struct jogadores{
     char jogador[50];
     int vitorias;
+    int empates; 
 };
 typedef struct jogadores Jogadores;
 
