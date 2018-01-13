@@ -14,6 +14,7 @@
 #define VALORINCIAL -1
 #define TAMANHO 25
 
+//Imprimir Tabela
 void imprimirLista(Jogadores RegJogadoresTotais[], int *contador) {
     int i;
     puts("");
@@ -49,7 +50,7 @@ void guardarFicheiro(Jogadores RegJogadores[], int *contador){
     puts(" ");
 }
 
-//Ler infromaçoes do Ficheiro
+//Ler informaçoes do Ficheiro
 void LerFicheiro(Jogadores RegJogadoresTotais[], int *contador){
     int i=0;
 
@@ -61,7 +62,7 @@ void LerFicheiro(Jogadores RegJogadoresTotais[], int *contador){
 
 }
 
-
+//Função para guardar o contador dos jogadores
 void guardarContador(int contador){
     FILE *contadorFicheiro = fopen("contador.dat", "wb");
     fwrite(&contador, sizeof(int), 1, contadorFicheiro);
@@ -202,6 +203,7 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
             //Contador para as jogadas realizadas
             jogadas[quemjoga]+=1;
             printf("%s ganhou. Numero de Jogadas: %d", quemjoga==0 ? RegJogadores[1].jogador : RegJogadores[0].jogador ,jogadas[abs(quemjoga-1)]);
+            //Guardar Vitoria
             RegJogadores[abs(quemjoga-1)].pontos = RegJogadores[abs(quemjoga-1)].pontos + 3;
             return quemjoga+2;            
         }
@@ -211,7 +213,7 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     return quemjoga;
 }
 
-
+//Jogadas Dos jogadores
 void jogadas(int matriz[][TAMATRIZ], char tokens[], Jogadores RegJogadores[]){
     char coluna;
     int linha;
@@ -234,7 +236,7 @@ void jogadas(int matriz[][TAMATRIZ], char tokens[], Jogadores RegJogadores[]){
 
 }
 
-
+//Cria a Matriz
 void criarMatriz(int matriz[][TAMATRIZ]){
     int i, j;
 
@@ -247,7 +249,7 @@ void criarMatriz(int matriz[][TAMATRIZ]){
     
 }
 
-
+//Premite Escolher tokens
 void escolherTokens(char tokens[], Jogadores RegJogadores[]){
     int i;
     
@@ -267,6 +269,7 @@ void escolherTokens(char tokens[], Jogadores RegJogadores[]){
     
 }
 
+//função de dar nomes ao jogadores
 void nomes(int numJogadores, Jogadores RegJogadores[], int *contador){
     int i;
     
