@@ -162,6 +162,12 @@ int verificasJogadas(int matriz[][TAMATRIZ], char tokens[], char coluna, int lin
     int vitoria = 0;
     int numTokens = 0;
     
+    //Empate
+    if( (jogadas[0] + jogadas[1]) == (TAMATRIZ * TAMATRIZ)){
+        RegJogadores[0].pontos = RegJogadores[0].pontos + 1;
+        RegJogadores[1].pontos = RegJogadores[1].pontos + 1;
+        return quemjoga+2;
+    }
     //Se as letras tiverem em minuscula passa para Maiuscula
     if(coluna>=97){
         coluna-=32;
