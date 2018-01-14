@@ -14,7 +14,21 @@
 #define PECAS 2
 #define VALORINCIAL -1
 #define TAMANHO 25
+int com = 0;
 
+//joga nos espaços vazios
+void jogadasComputador(int matriz[][TAMATRIZ], int *linha, char *coluna)
+{
+  int i, j;
+    
+  for(i=0; i< TAMATRIZ; ++i)
+    for(j=0; j< TAMATRIZ; ++j)
+       if(matriz[i][j]==-1) {
+          *linha = i + 1;
+          *coluna = j + 65;
+          return;
+       } 
+}
 
 //Ler informaçoes do Ficheiro
 void lerFicheiro(Jogadores RegJogadoresTotais[], int contador){
@@ -285,6 +299,12 @@ void jogadas(int matriz[][TAMATRIZ], char tokens[], Jogadores RegJogadores[]){
     
     //Input para Jogadas
     do{
+        //jogar contra o computador
+        if(com == 1 & quemjoga == 1){
+            jogadasComputador(matriz,&linha,&coluna);
+            quemjoga=verificasJogadas(matriz,tokens,coluna,linha,quemjoga,jogadas,RegJogadores);
+            continue;
+        }
         puts("");
         printf("%s introduza a coluna: ", quemjoga==0 ? RegJogadores[0].jogador : RegJogadores[1].jogador);
         scanf("%c", &coluna);
@@ -338,6 +358,25 @@ void nomes(int numJogadores, Jogadores RegJogadores[], Jogadores RegJogadoresTot
     
     clean_buffer();
     for(i = 0; i < numJogadores; ++i){
+        //dar nome ao computador
+        if( com == 1 & i==1){
+            RegJogadores[i].jogador[0]='C';
+            RegJogadores[i].jogador[1]='o';
+            RegJogadores[i].jogador[2]='m';
+            RegJogadores[i].jogador[3]='p';
+            RegJogadores[i].jogador[4]='u';
+            RegJogadores[i].jogador[5]='t';
+            RegJogadores[i].jogador[6]='a';
+            RegJogadores[i].jogador[7]='d';
+            RegJogadores[i].jogador[8]='o';
+            RegJogadores[i].jogador[9]='r';
+            for(i = 10; i < 50; ++i){
+                RegJogadores[i].jogador[i]='\0';
+            }
+            continue;
+            //se quiser meter o computador nos resultados adicionar contador
+        }
+        //dar nome aos jogadores
         printf("Nome do Jogador %d: ", i+1);
         lerString(RegJogadores[i].jogador, TAMANHO);
         RegJogadores[i].pontos = 0;
@@ -402,9 +441,23 @@ int main(int argc, char** argv) {
                 puts(" ");
                 guardarContador(contador);
                 jogadoresIguais = 0;
+                free(RegJogadores);
+                RegJogadores = NULL;
                 break;
             case 2:
-                printf("WIP");
+                com = 1;
+                RegJogadores = (Jogadores *) malloc(PECAS * sizeof(Jogadores));
+                nomes(PECAS,RegJogadores,RegJogadoresTotais,&contador,&jogadoresIguais);
+                escolherTokens(tokens, RegJogadores);
+                criarMatriz(matriz);
+                printMatriz(matriz,tokens);
+                jogadas(matriz,tokens, RegJogadores);
+                guardarFicheiro(RegJogadores,RegJogadoresTotais,&contador,&jogadoresIguais);
+                puts(" ");
+                guardarContador(contador);
+                com = 0;
+                free(RegJogadores);
+                RegJogadores = NULL;
                 break;
             case 3:
                 if( contador == 0){
