@@ -17,17 +17,65 @@
 int com = 0;
 
 //joga nos espaços vazios
-void jogadasComputador(int matriz[][TAMATRIZ], int *linha, char *coluna)
-{
+void jogadasComputador(int matriz[][TAMATRIZ], int *linha, char *coluna, int jogadas[]){
   int i, j;
+  
+  if( jogadas[0]>= 2 ){
+    //verifica as colunas 
+    for(i=0; i<TAMATRIZ ; ++i){
+        for(j=0; j< (TAMATRIZ - 2); ++j){
+             if(matriz[i][j]==0 && matriz[i][j]==matriz[i][j+1] && matriz[i][j+2]==-1){
+                *linha = i+1;
+                *coluna = j + 2 + 65;
+                return;
+             }
+        }
+    }
     
-  for(i=0; i< TAMATRIZ; ++i)
-    for(j=0; j< TAMATRIZ; ++j)
-       if(matriz[i][j]==-1) {
+   //verifica as linhas para ver se o jogador ganhou
+    for(i=0; i<(TAMATRIZ - 2); ++i){
+        for(j=0; j< TAMATRIZ; ++j){
+             if(matriz[i][j]==0 && matriz[i][j]==matriz[i+1][j] && matriz[i+2][j]==-1){
+                *linha = i + 3;
+                *coluna = j + 65;
+                return;
+             }     
+        }
+    }
+    
+    //verifica as diagonais da esquerda para a direita
+    for(i=0; i<(TAMATRIZ - 2); ++i){
+        for(j=0; j<(TAMATRIZ - 2); ++j){
+             if(matriz[i][j]==0 && matriz[i][j]==matriz[i+1][j+1] && matriz[i+2][j+2]==-1){
+                *linha = i + 3;
+                *coluna = j + 2 + 65;
+                return;
+             }  
+        }
+    }
+    
+    //verifica as diagonais da direita para a esquerda
+    for(i=0; i<(TAMATRIZ- 2); i++){
+        for(j=0; j<(TAMATRIZ - 2); j++){
+            if(matriz[i][j+2]==0 && matriz[i][j+2]==matriz[i+1][j+1] && matriz[i+2][j]==-1){
+                    *linha = i+3;
+                    *coluna = j + 65;
+                    return;
+            }
+        }
+    }
+  }
+  
+  for(i=0; i< TAMATRIZ; ++i){
+    for(j=0; j< TAMATRIZ; ++j){
+       if(matriz[i][j]==-1){
           *linha = i + 1;
           *coluna = j + 65;
           return;
-       } 
+       }
+    }
+  }
+  
 }
 
 //Ler informaçoes do Ficheiro
@@ -301,7 +349,7 @@ void jogadas(int matriz[][TAMATRIZ], char tokens[], Jogadores RegJogadores[]){
     do{
         //jogar contra o computador
         if(com == 1 & quemjoga == 1){
-            jogadasComputador(matriz,&linha,&coluna);
+            jogadasComputador(matriz,&linha,&coluna,jogadas);
             quemjoga=verificasJogadas(matriz,tokens,coluna,linha,quemjoga,jogadas,RegJogadores);
             continue;
         }
